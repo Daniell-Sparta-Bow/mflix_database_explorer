@@ -17,6 +17,9 @@ public class Theater {
         this.location = location;
     }
 
+    public Theater(){
+    }
+
     public String getId() {
         return id;
     }

@@ -10,6 +10,9 @@ public class Location {
         this.geo = geo;
     }
 
+    public Location() {
+    }
+
     public Address getAddress() {
         return address;
     }

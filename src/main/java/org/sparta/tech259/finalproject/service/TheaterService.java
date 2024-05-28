@@ -39,7 +39,7 @@ public class TheaterService {
 
     public boolean deleteTheater(Integer id){
         Optional<Theater> theater = theaterRepository.findByTheaterId(id);
-        if (theater.isPresent()) {
+        if(theater.isPresent()) {
             theaterRepository.delete(theater.get());
             return true;
         }

@@ -25,6 +25,9 @@ public class Geo {
     }
 
     public void setCoordinates(double[] coordinates) {
+        if (coordinates.length != 2) {
+            throw new RuntimeException("Coordinates must be of length 2");
+        }
         this.coordinates = coordinates;
     }
 

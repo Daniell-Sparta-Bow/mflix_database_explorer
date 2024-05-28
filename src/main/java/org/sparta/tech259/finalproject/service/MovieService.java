@@ -6,6 +6,7 @@ import org.sparta.tech259.finalproject.repositories.MovieEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class MovieService {
     }
 
     public List<Movie> getMoviesByGenre(String genre){
-        return movieEntityRepository.findByGenresContaining(genre);
+        return movieEntityRepository.findByGenreContaining(genre);
     }
 
     public List<Movie> getMoviesByYear(int year){
@@ -43,15 +44,15 @@ public class MovieService {
     }
 
     public List<Movie> getMovieByLanguage(String language){
-        return movieEntityRepository.findByLanguages(language);
+        return movieEntityRepository.findByLanguages(Collections.singletonList(language));
 
     }
 
     public List<Movie> getMovieByCountry(String country){
-        return movieEntityRepository.findByCountries(country);
+        return movieEntityRepository.findByCountries(Collections.singletonList(country));
     }
 
-    public List<Movie> getMoviesByRating(int rating){
+    public List<Movie> getMoviesByRating(String rating){
         return movieEntityRepository.findByRated(rating);
     }
 

@@ -25,14 +25,14 @@ public class MovieController {
 
     }
 
-    @GetMapping("/movie/language")
+/*    @GetMapping("/movie/language")
     public List<Movie> getAllM(@RequestParam(name="movie") String movie) {
         List<Movie> movie = movieService.getMovieByLanguage(movie);
         if(movie.isEmpty()){
 
         }
 
-    }
+    }*/
 
     @GetMapping("/movies/movie/{id}")
     public Movie getMoviesByIs(@PathVariable("id")ObjectId id){

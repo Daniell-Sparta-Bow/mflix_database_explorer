@@ -1,5 +1,6 @@
 package org.sparta.tech259.finalproject.repositories;
 
+import com.mongodb.lang.NonNull;
 import org.bson.types.ObjectId;
 import org.sparta.tech259.finalproject.entities.Movie;
 import org.springframework.data.mongodb.core.MongoAction;
@@ -13,14 +14,15 @@ import java.util.Optional;
 public interface MovieEntityRepository extends MongoRepository<Movie, ObjectId> {
     Optional<Movie> findByTitle(String title);
     List<Movie> findByYear(int year);
-    List<Movie> findByGenresContaining(String genre);
+    List<Movie> findByGenreContaining(String genre);
 
-    Optional<Movie> findById(ObjectId movieId);
+    @NonNull
+    Optional<Movie> findById( @NonNull ObjectId movieId);
     
 
-    List<Movie> findByLanguages(String language);
+    List<Movie> findByLanguages(List<String> languages);
 
-    List<Movie> findByRated(int rating);
+    List<Movie> findByRated(String rated);
 
-    List<Movie> findByCountries(String country);
+    List<Movie> findByCountries(List<String> countries);
 }

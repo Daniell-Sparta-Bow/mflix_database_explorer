@@ -1,6 +1,5 @@
 package org.sparta.tech259.finalproject.controller.rest;
 
-import org.bson.types.ObjectId;
 import org.sparta.tech259.finalproject.model.entities.Users;
 import org.sparta.tech259.finalproject.model.exception.users.UsersNotCreatedException;
 import org.sparta.tech259.finalproject.model.exception.users.UsersNotFoundException;
@@ -10,16 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-import java.util.Random;
 
 import java.util.List;
 
 @RestController
-public class UsersController {
+public class UsersRestController {
     private UsersRepository usersRepository;
     
     @Autowired
-    public UsersController(UsersRepository usersRepository) {
+    public UsersRestController(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 

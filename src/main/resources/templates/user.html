@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <!--    <link th:href="@{/style.css}" rel="stylesheet">-->
+</head>
+<body>
+<!--<div th:insert="~{/fragments/header :: header}"></div>-->
+
+<main class="main">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<!--<div th:insert="~{/fragments/footer :: footer}"></div>-->
+</body>
+</html>

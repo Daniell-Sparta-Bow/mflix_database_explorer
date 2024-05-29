@@ -14,7 +14,9 @@ import java.util.Optional;
 public class MovieService {
 
 
+    @Autowired
     private final MovieEntityRepository movieEntityRepository;
+
 
 
     public MovieService(MovieEntityRepository movieEntityRepository) {
@@ -26,8 +28,8 @@ public class MovieService {
     }
 
 
-    public Optional<Movie> getMovieById(ObjectId movieId){
-        return movieEntityRepository.findById(movieId);
+    public Optional<Movie> getMovieById(String movieId){
+        return movieEntityRepository.findBy_id(movieId);
     }
 
 
@@ -35,11 +37,12 @@ public class MovieService {
         return movieEntityRepository.findByTitle(title);
     }
 
-    public List<Movie> getMoviesByGenre(String genre){
-        return movieEntityRepository.findByGenreContaining(genre);
+    public List<Movie> getMoviesByGenres(String genre) {
+        return movieEntityRepository.findByGenresContaining(genre);
     }
 
-    public List<Movie> getMoviesByYear(int year){
+
+    public List<Movie> getMoviesByYear(String year){
         return movieEntityRepository.findByYear(year);
     }
 
@@ -52,14 +55,13 @@ public class MovieService {
         return movieEntityRepository.findByCountries(Collections.singletonList(country));
     }
 
-    public List<Movie> getMoviesByRating(String rating){
-        return movieEntityRepository.findByRated(rating);
-    }
+//    public List<Movie> getMoviesByRating(Double rating){
+//        return movieEntityRepository.findByRated(rating);
+//    }
 
     public Movie createMovie(Movie movie){
         return movieEntityRepository.save(movie);
     }
-
 
     public boolean deleteMovie(String title){
         Optional<Movie> movieOptional= movieEntityRepository.findByTitle(title);
@@ -70,12 +72,6 @@ public class MovieService {
             return false;
         }
     }
-
-
-
-
-
-
 
     public Movie updateMovie(ObjectId id,  Movie updatedMovie){
         Optional<Movie> optionalMovie = movieEntityRepository.findById(id);

@@ -34,10 +34,9 @@ public class MovieController {
 
     }*/
 
-    @GetMapping("/movies/movie/{id}")
-    public Movie getMoviesByIs(@PathVariable("id")ObjectId id){
-        return movieService.getMovieById(id).get();
-    }
-
+//    @GetMapping("/movies/movie/{id}")
+//    public Movie getMoviesByIs(@PathVariable("id")ObjectId id){
+//        return movieService.getMovieById(id).get();
+//    }
 
 }

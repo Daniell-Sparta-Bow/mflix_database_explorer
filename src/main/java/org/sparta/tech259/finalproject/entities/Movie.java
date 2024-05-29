@@ -1,182 +1,71 @@
 package org.sparta.tech259.finalproject.entities;
 
-import com.mongodb.lang.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Document(collection = "movies")
 public class Movie {
 
     @Id
-    private ObjectId id;
+    private String _id;
     private String plot;
-    private List<String> genre;
+    private List<String> genres;
     private Integer runtime;
     private List <String> cast;
     private String poster;
     private String title;
     private String fullplot;
     private List<String> languages;
-    private Integer released;
+    private LocalDateTime released;
     private List<String> directors;
     private String rated;
     private Awards awards;
     private String lastUpdated;
-    private Integer year;
+    private String year;
     private Imdb imdb;
     private List<String> countries;
     private String type;
     private Tomatoes tomatoes;
     private Integer num_mflix_comments;
 
-    public static class Awards{
-        private int wins;
-        private int nominations;
-        private String text;
-        private Date lastUpdated;
-
-        public int getWins() {
-            return wins;
-        }
-
-        public void setWins(int wins) {
-            this.wins = wins;
-        }
-
-        public int getNominations() {
-            return nominations;
-        }
-
-        public void setNominations(int nominations) {
-            this.nominations = nominations;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
-        public Date getLastUpdated() {
-            return lastUpdated;
-        }
-
-        public void setLastUpdated(Date lastUpdated) {
-            this.lastUpdated = lastUpdated;
-        }
+    public Movie() {
     }
 
-    public static class Imdb{
-        private int id;
-        private double rating;
-        private int votes;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public double getRating() {
-            return rating;
-        }
-
-        public void setRating(double rating) {
-            this.rating = rating;
-        }
-
-        public int getVotes() {
-            return votes;
-        }
-
-        public void setVotes(int votes) {
-            this.votes = votes;
-        }
+    public Movie(String _id, String plot, List<String> genres, Integer runtime, List<String> cast, String poster, String title, String fullplot, List<String> languages, LocalDateTime released, List<String> directors, String rated, Awards awards, String lastUpdated, String year, Imdb imdb, List<String> countries, String type, Tomatoes tomatoes, Integer num_mflix_comments) {
+        this._id = _id;
+        this.plot = plot;
+        this.genres = genres;
+        this.runtime = runtime;
+        this.cast = cast;
+        this.poster = poster;
+        this.title = title;
+        this.fullplot = fullplot;
+        this.languages = languages;
+        this.released = released;
+        this.directors = directors;
+        this.rated = rated;
+        this.awards = awards;
+        this.lastUpdated = lastUpdated;
+        this.year = year;
+        this.imdb = imdb;
+        this.countries = countries;
+        this.type = type;
+        this.tomatoes = tomatoes;
+        this.num_mflix_comments = num_mflix_comments;
     }
 
-    public static class Tomatoes{
-        private Viewer viewer;
-        private Integer dvd;
-        private String website;
-        private Date lastUpdated;
 
-        public Viewer getViewer() {
-            return viewer;
-        }
 
-        public void setViewer(Viewer viewer) {
-            this.viewer = viewer;
-        }
-
-        public Integer getDvd() {
-            return dvd;
-        }
-
-        public void setDvd(Integer dvd) {
-            this.dvd = dvd;
-        }
-
-        public String getWebsite() {
-            return website;
-        }
-
-        public void setWebsite(String website) {
-            this.website = website;
-        }
-
-        public Date getLastUpdated() {
-            return lastUpdated;
-        }
-
-        public void setLastUpdated(Date lastUpdated) {
-            this.lastUpdated = lastUpdated;
-        }
-
-        public static class Viewer{
-            private double rating;
-            private int numReviews;
-            private int meter;
-
-            public double getRating() {
-                return rating;
-            }
-
-            public void setRating(double rating) {
-                this.rating = rating;
-            }
-
-            public int getNumReviews() {
-                return numReviews;
-            }
-
-            public void setNumReviews(int numReviews) {
-                this.numReviews = numReviews;
-            }
-
-            public int getMeter() {
-                return meter;
-            }
-
-            public void setMeter(int meter) {
-                this.meter = meter;
-            }
-        }
+    public String getId() {
+        return _id;
     }
 
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setId(String id) {
+        this._id = id;
     }
 
     public String getPlot() {
@@ -188,11 +77,11 @@ public class Movie {
     }
 
     public List<String> getGenre() {
-        return genre;
+        return genres;
     }
 
-    public void setGenre(List<String> genre) {
-        this.genre = genre;
+    public void setGenre(List<String> genres) {
+        this.genres = genres;
     }
 
     public Integer getRuntime() {
@@ -243,11 +132,11 @@ public class Movie {
         this.languages = languages;
     }
 
-    public Integer getReleased() {
+    public LocalDateTime getReleased() {
         return released;
     }
 
-    public void setReleased(Integer released) {
+    public void setReleased(LocalDateTime released) {
         this.released = released;
     }
 
@@ -283,11 +172,11 @@ public class Movie {
         this.lastUpdated = lastUpdated;
     }
 
-    public Integer getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -329,6 +218,32 @@ public class Movie {
 
     public void setNum_mflix_comments(Integer num_mflix_comments) {
         this.num_mflix_comments = num_mflix_comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "_id=" + _id +
+                ", plot='" + plot + '\'' +
+                ", genres=" + genres +
+                ", runtime=" + runtime +
+                ", cast=" + cast +
+                ", poster='" + poster + '\'' +
+                ", title='" + title + '\'' +
+                ", fullplot='" + fullplot + '\'' +
+                ", languages=" + languages +
+                ", released=" + released +
+                ", directors=" + directors +
+                ", rated='" + rated + '\'' +
+                ", awards=" + awards +
+                ", lastUpdated='" + lastUpdated + '\'' +
+                ", year=" + year +
+                ", imdb=" + imdb +
+                ", countries=" + countries +
+                ", type='" + type + '\'' +
+                ", tomatoes=" + tomatoes +
+                ", num_mflix_comments=" + num_mflix_comments +
+                '}';
     }
 }
 

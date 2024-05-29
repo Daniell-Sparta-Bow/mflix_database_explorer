@@ -1,9 +1,7 @@
-package org.sparta.tech259.finalproject.repositories;
+package org.sparta.tech259.finalproject.model.repositories;
 
-import com.mongodb.lang.NonNull;
 import org.bson.types.ObjectId;
-import org.sparta.tech259.finalproject.entities.Movie;
-import org.springframework.data.mongodb.core.MongoAction;
+import org.sparta.tech259.finalproject.model.entities.movies.Movie;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

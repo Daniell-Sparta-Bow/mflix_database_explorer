@@ -1,8 +1,8 @@
 package org.sparta.tech259.finalproject.service;
 
 import org.bson.types.ObjectId;
-import org.sparta.tech259.finalproject.entities.Movie;
-import org.sparta.tech259.finalproject.repositories.MovieEntityRepository;
+import org.sparta.tech259.finalproject.model.entities.movies.Movie;
+import org.sparta.tech259.finalproject.model.repositories.MovieEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

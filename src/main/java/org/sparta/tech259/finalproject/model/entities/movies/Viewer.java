@@ -1,4 +1,4 @@
-package org.sparta.tech259.finalproject.entities;
+package org.sparta.tech259.finalproject.model.entities.movies;
 
 public class Viewer{
     private Double rating;

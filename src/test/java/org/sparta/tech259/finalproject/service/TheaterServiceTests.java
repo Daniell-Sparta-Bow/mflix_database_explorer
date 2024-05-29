@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.mockito.AdditionalAnswers;
 import org.sparta.tech259.finalproject.model.entities.Address;
 import org.sparta.tech259.finalproject.model.entities.Geo;
 import org.sparta.tech259.finalproject.model.entities.Location;
@@ -103,6 +103,38 @@ class TheaterServiceTests {
         int theaterId = 100;
 
         Assertions.assertThrows(RuntimeException.class, () -> theaterService.updateTheater(theaterId, theater1));
+    }
+
+    @Test
+    @DisplayName("When attempting to update a theater to a theater ID that does not exist, updateTheater returns the theater with updated theater ID")
+    void whenAttemptingToUpdateATheaterToATheaterIdThatDoesNotExistUpdateTheaterReturnsTheTheaterWithUpdatedId() {
+        int theaterId = 100;
+        Theater storedTheater = new Theater("id", theaterId, new Location());
+
+        when(repository.findByTheaterId(anyInt()))
+                .thenReturn(Optional.of(storedTheater))
+                .thenReturn(Optional.empty());
+
+        when(repository.save(any(Theater.class)))
+                .then(AdditionalAnswers.returnsFirstArg());
+
+        Assertions.assertEquals(theater1.getTheaterId(), theaterService.updateTheater(theaterId, theater1).getTheaterId());
+    }
+
+    @Test
+    @DisplayName("Update theater correctly updates location")
+    void updateTheaterCorrectlyUpdatesLocation() {
+        int theaterId = theater1.getTheaterId();
+        Theater storedTheater = new Theater("id", theaterId, new Location());
+
+        when(repository.findByTheaterId(anyInt()))
+                .thenReturn(Optional.of(storedTheater))
+                .thenReturn(Optional.empty());
+
+        when(repository.save(any(Theater.class)))
+                .then(AdditionalAnswers.returnsFirstArg());
+
+        Assertions.assertEquals(theater1.getLocation(), theaterService.updateTheater(theaterId, theater1).getLocation());
     }
 
 

@@ -24,7 +24,7 @@ public class Theater {
 
     public static Theater fromRequestParams(Integer theaterId, String streetAddress, String city, String state, String zipcode, Double latitude, Double longitude) {
         Address address = new Address(streetAddress, city, state, zipcode);
-        Geo geo = new Geo("Point", new double[] {latitude, longitude});
+        Geo geo = new Geo("Point", new double[] {longitude, latitude});
         Theater theater = new Theater();
         theater.setTheaterId(theaterId);
         theater.setLocation(new Location(address, geo));

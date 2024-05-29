@@ -52,6 +52,9 @@ public class TheaterService {
     }
 
     public Theater createTheater(Theater theater){
+        if (theaterRepository.findByTheaterId(theater.getTheaterId()).isPresent()) {
+            throw new TheaterIdAlreadyExistsException(theater.getTheaterId());
+        }
         return theaterRepository.save(theater);
     }
 

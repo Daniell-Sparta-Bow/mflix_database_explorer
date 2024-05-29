@@ -3,6 +3,8 @@ package org.sparta.tech259.finalproject.model.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document(collection = "theaters")
 public class Theater {
 
@@ -60,5 +62,18 @@ public class Theater {
                 ", theaterId=" + theaterId +
                 ", location=" + location +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Theater theater = (Theater) o;
+        return theaterId == theater.theaterId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(theaterId);
     }
 }

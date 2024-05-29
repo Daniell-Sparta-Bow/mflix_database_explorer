@@ -10,7 +10,13 @@
 
 
 <main class="main">
-  <a th:href="@{/web/theater/add}">Add theater</a>
+  <div>
+    <form th:action="@{/web/theaters/search}" method="get">
+      <input type="text" name="query" placeholder="Search...">
+      <button type="submit">Search</button>
+    </form>
+    <a th:href="@{/web/theater/add}">Add theater</a>
+  </div>
   <table>
     <thead>
     <tr>

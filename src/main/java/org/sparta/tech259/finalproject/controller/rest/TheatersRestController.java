@@ -51,7 +51,7 @@ public class TheatersRestController {
             return List.of();
         }
     }
-    
+
     @GetMapping("/test/theaters")
     public List<Theater> getTheaters(
             @RequestParam(required = false) String city,
@@ -62,11 +62,14 @@ public class TheatersRestController {
 
         if (city != null) {
             result.retainAll(theaterService.findByCity(city));
-        } else if (zipcode != null) {
+        }
+        if (zipcode != null) {
             result.retainAll(theaterService.findByZipcode(zipcode));
-        } else if (state != null) {
+        }
+        if (state != null) {
             result.retainAll(theaterService.findByState(state));
-        } else if (street != null) {
+        }
+        if (street != null) {
             result.retainAll(theaterService.findByStreet(street));
         }
         return result;

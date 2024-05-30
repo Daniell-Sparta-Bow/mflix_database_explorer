@@ -1,11 +1,17 @@
 package org.sparta.tech259.finalproject.controller.web;
 
+import org.sparta.tech259.finalproject.model.entities.Users;
+import org.sparta.tech259.finalproject.model.exception.users.UsersNotCreatedException;
+import org.sparta.tech259.finalproject.model.exception.users.UsersNotFoundException;
+import org.sparta.tech259.finalproject.model.exception.users.UsersNotUpdatedException;
 import org.sparta.tech259.finalproject.model.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UsersWebController {
@@ -16,17 +22,89 @@ public class UsersWebController {
         this.usersRepository = usersRepository;
     }
 
+    //get user
     @GetMapping("/web/user/{id}")
-    public String getUser(@PathVariable String id, Model model) {
-        model.addAttribute("user", usersRepository.findBy_id(id));
-        return "user";
+    public String getUser(@PathVariable String id, Model model) throws UsersNotFoundException {
+        Optional<Users> usersOptional = usersRepository.findBy_id(id);
+        if(usersOptional.isPresent()) {
+            Users users = usersOptional.get();
+            model.addAttribute("user", users);
+            return "user";
+        }
+        else {
+            throw new UsersNotFoundException(id);
+        }
     }
 
+    //get all users
     @GetMapping("/web/users")
-    public String getUsers(Model model) {
-        model.addAttribute("users", usersRepository.findAll());
-        return "users";
+    public String getUsers(Model model) throws UsersNotFoundException {
+        List<Users> usersList = usersRepository.findAll();
+        if(usersList.isEmpty()) {
+            throw new UsersNotFoundException("All");
+        }
+        else {
+            model.addAttribute("users", usersRepository.findAll());
+            return "users";
+        }
+    }
+
+    //create user
+    @GetMapping("/web/user/create")
+    public String createUser(Model model) {
+        Users newUser = new Users(null,null,null);
+        model.addAttribute("user", newUser);
+        return "user-create";
+    }
+
+    //save created user
+    @PostMapping("/web/user/create/save")
+    public String creatingUser(@ModelAttribute("user") Users user) {
+        usersRepository.save(user);
+        return "redirect:/web/users";
+    }
+
+    //edit user info
+    @GetMapping("/web/user/edit/{id}")
+    public String editUser(@PathVariable String id, @ModelAttribute Users user, Model model) throws UsersNotFoundException {
+        Optional<Users> userToUpdate = usersRepository.findBy_id(id);
+        if(userToUpdate.isPresent()) {
+            Users userToEdit = userToUpdate.get();
+            model.addAttribute("user", userToEdit);
+            return "user-edit";
+        }
+        else {
+            throw new UsersNotFoundException(user.getName());
+        }
+    }
+
+    //save edited user info
+    @PostMapping("/web/user/edit/save/{id}")
+    public String updateUser(@ModelAttribute("user") Users newUser, @PathVariable String id) throws UsersNotUpdatedException {
+        Optional<Users> optionalUser = usersRepository.findBy_id(id);
+        if (optionalUser.isPresent()) {
+            Users oldUser = optionalUser.get();
+            oldUser.setName(newUser.getName());
+            oldUser.setEmail(newUser.getEmail());
+            oldUser.setPassword(newUser.getPassword());
+            usersRepository.save(oldUser);
+            return "redirect:/web/users";
+        } else {
+            throw new UsersNotUpdatedException(newUser.getName());
+        }
     }
 
 
+    //delete
+    @GetMapping("/web/user/delete/{id}")
+    public String deleteUser(@PathVariable String id) throws UsersNotFoundException {
+        Optional<Users> optionalUser = usersRepository.findBy_id(id);
+        if(optionalUser.isPresent()) {
+            Users userToDelete = optionalUser.get();
+            usersRepository.delete(userToDelete);
+            return "redirect:/web/users";
+        } else {
+            throw new UsersNotFoundException(id);
+        }
+    }
 }

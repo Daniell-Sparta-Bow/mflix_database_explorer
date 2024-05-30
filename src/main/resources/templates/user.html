@@ -2,31 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
-    <!--    <link th:href="@{/style.css}" rel="stylesheet">-->
+    <title th:text="'User: '+ ${user.name}"></title>
 </head>
 <body>
-<!--<div th:insert="~{/fragments/header :: header}"></div>-->
 
 <main class="main">
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Password</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${user.getName()}"></td>
-            <td th:text="${user.getEmail()}"></td>
-            <td th:text="${user.getPassword()}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div>
+        <h3>User</h3>
+        <div>
+            <h5>ID</h5>
+            <p th:text="${user._id}"></p>
+            <h5>Name</h5>
+            <p th:text="${user.name}"></p>
+            <h5>Email</h5>
+            <p th:text="${user.email}"></p>
+            <h5>Password</h5>
+            <p th:text="${user.password}"></p>
+        </div>
+    </div>
 </main>
-
-<!--<div th:insert="~{/fragments/footer :: footer}"></div>-->
 </body>
 </html>

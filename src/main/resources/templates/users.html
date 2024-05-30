@@ -8,11 +8,12 @@
 <body>
 <!--<div th:insert="~{/fragments/header :: header}"></div>-->
 
-
 <main class="main">
+    <h3>All Users</h3>
     <table>
         <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -20,9 +21,12 @@
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
-            <td th:text="${user.getName()}"></td>
-            <td th:text="${user.getEmail()}"></td>
-            <td th:text="${user.getPassword()}"></td>
+            <td th:text="${user._id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.password}"></td>
+            <td><a th:href="@{/web/user/edit/{id}(id=${user._id})}">Edit</a></td>
+            <td><a th:href="@{/web/user/delete/{id}(id=${user._id})}">Delete</a></td>
         </tr>
         </tbody>
     </table>

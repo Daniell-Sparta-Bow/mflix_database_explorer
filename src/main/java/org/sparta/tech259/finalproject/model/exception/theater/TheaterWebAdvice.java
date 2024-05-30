@@ -15,7 +15,7 @@ public class TheaterWebAdvice {
 
     @ExceptionHandler({TheaterIdAlreadyExistsException.class, TheaterIdDoesNotExistsException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String theaterIdExistsException(TheaterIdAlreadyExistsException e,
+    public String theaterIdExistsException(RuntimeException e,
                                            HttpServletRequest request,
                                            Model model){
         model.addAttribute("ErrorCode", 400);

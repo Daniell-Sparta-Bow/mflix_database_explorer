@@ -1,6 +1,7 @@
 package org.sparta.tech259.finalproject.controller.web;
 
 import org.sparta.tech259.finalproject.model.entities.*;
+import org.sparta.tech259.finalproject.model.exception.theater.TheaterIdDoesNotExistsException;
 import org.sparta.tech259.finalproject.service.TheaterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +46,9 @@ public class TheatersWebController {
     @GetMapping("/theater/{id}")
     public String getTheaterById(@PathVariable Integer id, Model model) {
         Theater theater = theaterService.findByTheaterId(id);
+        if (theater == null) {
+            throw new TheaterIdDoesNotExistsException(id);
+        }
         model.addAttribute("theater", theater);
         return "theater";
     }

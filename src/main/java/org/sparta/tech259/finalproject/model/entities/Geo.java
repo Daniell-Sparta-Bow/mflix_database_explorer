@@ -12,6 +12,9 @@ public class Geo {
         this.coordinates = coordinates;
     }
 
+    public Geo() {
+    }
+
     public String getType() {
         return type;
     }

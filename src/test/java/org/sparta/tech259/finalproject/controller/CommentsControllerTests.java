@@ -20,7 +20,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.ErrorResponse;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-
 public class CommentsControllerTests {
 
     WebTestClient webTestClient;

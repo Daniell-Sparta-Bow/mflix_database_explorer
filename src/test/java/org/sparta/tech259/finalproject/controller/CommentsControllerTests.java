@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 import org.sparta.tech259.finalproject.controller.rest.CommentsRestController;
 import org.sparta.tech259.finalproject.model.entities.Comment;
@@ -38,6 +40,7 @@ public class CommentsControllerTests {
                 new Comment("3", LocalDateTime.now(), "user3@example.com", new ObjectId("60c72b2f9b1d4f5d4c8e2f4d"), "Could have been better.", "user3")
         );
         when(commentService.getAllComments()).thenReturn(expectedComments);
+        when(commentService.getCommentByCommentId("1")).thenReturn(Optional.ofNullable(expectedComments.get(0)));
 
     }
 
@@ -64,9 +67,22 @@ public class CommentsControllerTests {
        Assertions.assertEquals(expectedComments.size(), actualComments.size());
     }
 
+    @Test
+    @DisplayName("Check that get comments by id returns a specific comment")
+    void checkThatGetCommentsByIdReturnsAComment() {
+        Comment expectedComment = expectedComments.get(0);
+               webTestClient.get()
+               .uri("api/movie/comments/comment-id/1")
+               .exchange()
+               .expectStatus().isOk()
+               .expectBody(Comment.class)
+               .value(actualComment ->{
+                  Assertions.assertEquals(actualComment.getId(), expectedComment.getId());
+               } );
+    }
 
 
-                
+
 
 
 }

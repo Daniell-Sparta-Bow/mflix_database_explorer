@@ -1,11 +1,9 @@
 package org.sparta.tech259.finalproject.service;
 
-import org.bson.types.ObjectId;
 import org.sparta.tech259.finalproject.model.entities.Comment;
 import org.sparta.tech259.finalproject.model.repositories.CommentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +28,14 @@ public class CommentService {
   }
 
 
-  public List<Comment> getCommentsByUserId(int id) {
-    List<Comment> commentsList = new ArrayList<>();
-                            /*    PLACE HOLDER     */
-     return commentsList;
+  public List<Comment> getCommentsByUserName(String userName) {
+    List<Comment> comments = commentRepository.findByName(userName);
+     return comments;
   }
-
+  public List<Comment> getCommentsByMovieId(String movieId){
+    List<Comment> comments = commentRepository.findByMovieId(movieId);
+    return comments;
+  }
   public Comment createComment(Comment comment) {
     return commentRepository.save(comment);
   }
@@ -50,6 +50,7 @@ public class CommentService {
     Optional<Comment> originalComment = commentRepository.findById(id);
     if(originalComment.isPresent()) {
       Comment updatedComment = originalComment.get();
+      updatedComment.setName(commentToUpdate.getName());
       updatedComment.setText(commentToUpdate.getText());
       return commentRepository.save(updatedComment);
     }

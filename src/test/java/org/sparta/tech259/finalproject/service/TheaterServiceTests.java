@@ -9,6 +9,7 @@ import org.sparta.tech259.finalproject.model.entities.Address;
 import org.sparta.tech259.finalproject.model.entities.Geo;
 import org.sparta.tech259.finalproject.model.entities.Location;
 import org.sparta.tech259.finalproject.model.entities.Theater;
+import org.sparta.tech259.finalproject.model.exception.theater.TheaterIdAlreadyExistsException;
 import org.sparta.tech259.finalproject.model.repositories.TheaterRepository;
 
 import java.util.Arrays;
@@ -102,7 +103,7 @@ class TheaterServiceTests {
 
         int theaterId = 100;
 
-        Assertions.assertThrows(RuntimeException.class, () -> theaterService.updateTheater(theaterId, theater1));
+        Assertions.assertThrows(TheaterIdAlreadyExistsException.class, () -> theaterService.updateTheater(theaterId, theater1));
     }
 
     @Test

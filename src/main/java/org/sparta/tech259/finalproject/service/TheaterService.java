@@ -1,6 +1,7 @@
 package org.sparta.tech259.finalproject.service;
 
 import org.sparta.tech259.finalproject.model.entities.Theater;
+import org.sparta.tech259.finalproject.model.exception.theater.TheaterIdAlreadyExistsException;
 import org.sparta.tech259.finalproject.model.repositories.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class TheaterService {
 
     public List<Theater> getAllTheater(){
         return theaterRepository.findAll();
+    }
+
+    public Theater findByTheaterId(Integer id) {
+        return theaterRepository.findByTheaterId(id).orElse(null);
     }
 
     public List<Theater> findByCity(String city) {
@@ -47,16 +52,18 @@ public class TheaterService {
     }
 
     public Theater createTheater(Theater theater){
+        if (theaterRepository.findByTheaterId(theater.getTheaterId()).isPresent()) {
+            throw new TheaterIdAlreadyExistsException(theater.getTheaterId());
+        }
         return theaterRepository.save(theater);
     }
 
-    public Theater updateTheater(Integer id, Theater newTheater){
+    public Theater updateTheater(Integer id, Theater newTheater) throws TheaterIdAlreadyExistsException {
         Optional<Theater> oldTheater = theaterRepository.findByTheaterId(id);
         if(oldTheater.isPresent()){
             Theater updatedTheater = oldTheater.get();
             if(newTheater.getTheaterId() != id && theaterRepository.findByTheaterId(newTheater.getTheaterId()).isPresent()){
-                //TODO Throw theater Id already exists
-                throw new RuntimeException("A theater with that theater ID already exists");
+                throw new TheaterIdAlreadyExistsException(id);
             }
             updatedTheater.setTheaterId(newTheater.getTheaterId());
             updatedTheater.setLocation(newTheater.getLocation());

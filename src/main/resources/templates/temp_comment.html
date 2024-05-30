@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <button id="add-comment-btn" th:href="@{/web/movie/comment/add}">Add Comment</button>
+</div>
+<div class="comment-container" th:each="comment : ${comments}">
+    <div class="comment-header">
+        <span class="comment-name" th:text="${comment.name}"></span>
+        <span class="comment-date" th:text="${comment.date}"></span>
+    </div>
+    <div class="comment-email" th:text="${comment.email}"></div>
+    <div class="comment-text" th:text="${comment.text}"></div>
+</div>
+</body>
+</html>

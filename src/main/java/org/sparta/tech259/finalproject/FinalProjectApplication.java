@@ -18,10 +18,10 @@ public class FinalProjectApplication {
     @Bean
     CommandLineRunner runner(CommentRepository commentRepository, CommentService commentService) {
         return args -> {
-          //System.out.println(commentsRepository.findAll());
+            //Megan Richards
+          //System.out.println(commentRepository.findByName("Megan"));
 
-//          System.out.println(commentsRepository.findAll());
-            System.out.println(commentService.getCommentByCommentId("6655f6133b195e62aa06f27d"));
+          System.out.println(commentService.getCommentsByMovieId("5a9427658b0beebeb69782a7"));
 
         };
     }

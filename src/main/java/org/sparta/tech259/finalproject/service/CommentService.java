@@ -1,9 +1,11 @@
 package org.sparta.tech259.finalproject.service;
 
+import org.bson.types.ObjectId;
 import org.sparta.tech259.finalproject.model.entities.Comment;
 import org.sparta.tech259.finalproject.model.repositories.CommentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +35,10 @@ public class CommentService {
      return comments;
   }
   public List<Comment> getCommentsByMovieId(String movieId){
-    List<Comment> comments = commentRepository.findByMovieId(movieId);
-    return comments;
+    ObjectId movieIdObj = new ObjectId(movieId);
+    return commentRepository.findByMovieId(movieIdObj);
   }
+
   public Comment createComment(Comment comment) {
     return commentRepository.save(comment);
   }

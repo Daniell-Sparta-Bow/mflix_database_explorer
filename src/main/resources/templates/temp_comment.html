@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-    <button id="add-comment-btn" th:href="@{/web/movie/comment/add}">Add Comment</button>
+    <a class="button-link" th:href="@{/web/movie/comment/add}"><button id="add-comment-btn"  type="submit">Add Comment</button></a>
 </div>
 <div class="comment-container" th:each="comment : ${comments}">
     <div class="comment-header">

@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Comment</title>
+    <title>Add Comment</title>
     <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-<div class="comment-container">
-    <form th:action="@{/web/movie/comment/save-comment}" th:object="${comment}" method="post">
-        <div class="input-field">
+<main class="main">
+    <div class="comment-container">
+        <div th:insert="~{/fragments/header :: header}"></div>
+        <h3>Add Comment</h3>
+        <form th:action="@{/web/movie/comment/save-comment}" th:object="${comment}" method="post">
             <div class="input-field">
-                <label for="name">Name: </label>
-                <input type="text" th:field="${comment.name}" id="name"/>
+                <div class="input-field">
+                    <label for="name">Name: </label>
+                    <input type="text" th:field="${comment.name}" id="name"/>
+                </div>
             </div>
-        </div>
             <div class="input-field">
                 <label for="email">Email: </label>
                 <input type="text" th:field="${comment.email}" id="email"/>
             </div>
 
-        <label for="text">Comment:</label>
-        <div class="input-field">
-            <textarea th:field="${comment.text}" id="text"></textarea>
-        </div>
-        <div class="comment-buttons">
-        <button class="btn waves-effect waves-light" type="submit">Post</button>
-        </div>
-    </form>
-</div>
+            <label for="text">Comment:</label>
+            <div class="input-field">
+                <textarea th:field="${comment.text}" id="text"></textarea>
+            </div>
+            <div class="comment-buttons">
+                <button class="btn waves-effect waves-light" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+</main>
+
 </body>
 </html>

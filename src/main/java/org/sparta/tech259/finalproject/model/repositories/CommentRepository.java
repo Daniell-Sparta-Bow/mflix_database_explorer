@@ -17,7 +17,7 @@ public interface CommentRepository extends MongoRepository<Comment, String> {
     return findByMovieId(objectId);
   }
 
-  @Query("{ 'movie_id' :  ?0 }")
+
   List<Comment> findByMovieId(ObjectId movieId);
 
   };

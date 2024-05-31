@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Document(collection = "comments")
@@ -96,5 +97,22 @@ public class Comment {
            ", text='" + text + '\'' +
            ", name='" + name + '\'' +
            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Comment comment = (Comment) o;
+    return Objects.equals(_id, comment._id) && Objects.equals(movieId, comment.movieId) && Objects.equals(name, comment.name);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = Objects.hashCode(_id);
+    result = 31 * result + Objects.hashCode(movieId);
+    result = 31 * result + Objects.hashCode(name);
+    return result;
   }
 }

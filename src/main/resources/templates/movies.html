@@ -6,6 +6,7 @@
 </head>
 <body>
 <main class="main">
+    <a th:href="@{/web/movie/create}">Add movie</a>
 <table>
     <thead>
     <tr>
@@ -27,14 +28,15 @@
         <td th:text="${movie.title}"></td>
         <td th:text="${movie.fullplot}"></td>
         <td th:text="${movie.genre}"></td>
+        <td th:text="${movie.runtime}"></td>
         <td th:text="${movie.cast}"></td>
         <td th:text="${movie.poster}"></td>
         <td th:text="${movie.languages}"></td>
         <td th:text="${movie.released}"></td>
         <td th:text="${movie.directors}"></td>
         <td th:text="${movie.imdb}"></td>
-        <td><a th:href="@{/web/movies/edit/{id}(id=${movie.getId()})}">Edit</a></td>
-        <td><a th:href="@{/web/movies/delete/{id}(id=${movie.getId()})}">Delete</a></td>
+        <td><a th:href="@{/web/movie/edit/{id}(id=${movie.getId()})}">Edit</a></td>
+        <td><a th:href="@{/web/movie/delete/{id}(id=${movie.getId()})}">Delete</a></td>
     </tr>
     </tbody>
 </table>

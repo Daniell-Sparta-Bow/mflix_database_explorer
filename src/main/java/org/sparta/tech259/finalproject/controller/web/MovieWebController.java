@@ -62,7 +62,7 @@ public class MovieWebController {
     }
 
     //edit movie info
-    @GetMapping("movie/edit/{id}")
+    @GetMapping("/movie/edit/{id}")
     public String editMovie(@PathVariable String id, Model model)
     {
         Optional<Movie> movie = movieService.getMovieById(id);
@@ -78,9 +78,11 @@ public class MovieWebController {
     }
 
     //save edited movie info
-    @PostMapping("movie/edit/save/{id}")
-    public String updateMovie(@ModelAttribute("movie") Movie movie, @PathVariable String id) {
-        movieService.updateMovie(id, movie);
+    @PostMapping("/movie/edit/save/{id}")
+    public String updateMovie(
+            @ModelAttribute("movie") Movie movie,
+            @PathVariable String id) {
+//        movieService.updateMovie(id, movie);
         return "redirect:/web/movies";
     }
 

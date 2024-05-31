@@ -2,6 +2,7 @@ package org.sparta.tech259.finalproject.controller.rest;
 
 
 import org.sparta.tech259.finalproject.model.entities.movies.Movie;
+
 import org.sparta.tech259.finalproject.model.exception.movies.MovieIdNotFoundException;
 import org.sparta.tech259.finalproject.model.exception.movies.MoviesNotFoundException;
 import org.sparta.tech259.finalproject.model.exception.movies.RequestBodyNotFoundException;
@@ -25,16 +26,19 @@ public class MovieRestController {
     //read all
     @GetMapping("/movies")
     public List<Movie> getAllMovies() {
+
         List<Movie> movies = movieService.getAllMovies();
         if(movies.isEmpty()){
             throw new MoviesNotFoundException();
         }
         return movies;
+
     }
 
     //read singular
     @GetMapping("/movie/{id}")
     public Movie getMoviesById(@PathVariable("id") String id){
+
         if(id.isEmpty() || id == null){
             throw new MovieIdNotFoundException(id);
         }
@@ -45,6 +49,7 @@ public class MovieRestController {
     //delete
     @DeleteMapping("/movie/{id}")
     public void deleteMovie(@PathVariable String id){
+
         Optional<Movie> findMovie = movieService.getMovieById(id);
          if(findMovie.isEmpty()){
              throw new MovieIdNotFoundException(id);
@@ -55,6 +60,7 @@ public class MovieRestController {
     //add
     @PostMapping("/movie")
     public Movie addMovie(@RequestBody Movie movie){
+
           if(movie == null) {
               throw new RequestBodyNotFoundException();
           }
@@ -68,7 +74,9 @@ public class MovieRestController {
         if (movieToUpdate.isPresent()) {
             return movieService.updateMovie(id, movie);
         } else {
+
             throw new RequestBodyNotFoundException();
+
         }
     }
 }

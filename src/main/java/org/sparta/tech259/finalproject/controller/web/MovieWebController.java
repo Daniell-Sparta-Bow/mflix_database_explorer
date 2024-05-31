@@ -35,6 +35,7 @@ public class MovieWebController {
     //get movie by id
     @GetMapping("/movie/{id}")
     public String getMovieById(@PathVariable String id, Model model) {
+
         Optional<Movie> movie = movieService.getMovieById(id);
         if (movie.isEmpty()) {
             return "redirect:/error";
@@ -60,6 +61,7 @@ public class MovieWebController {
         movieService.createMovie(movie);
         return "redirect:/web/movies";
     }
+
 
     //edit movie info
     @GetMapping("/movie/edit/{id}")
@@ -90,6 +92,7 @@ public class MovieWebController {
     @GetMapping("/movie/delete/{id}")
     public String deleteMovieById(@PathVariable String id) {
         movieService.deleteMovie(id);
+
         return "redirect:/web/movies";
     }
 

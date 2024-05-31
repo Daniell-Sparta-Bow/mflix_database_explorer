@@ -26,7 +26,6 @@ public class CommentsRestController {
              throw new CommentsNotFoundException();
          }
          return comments;
-
     }
 
     @GetMapping("movie/comments/comment-id/{id}")
@@ -68,10 +67,9 @@ public class CommentsRestController {
         Optional<Comment> findComment = commentService.getCommentByCommentId(commentId);
         if(findComment.isEmpty()){
           throw new CommentIsNullException(commentId);
-        }else{
+        } else{
             return commentService.updateComment(commentId,comment.get());
         }
-
     }
 
     @DeleteMapping("movie/comment/{commentId}")

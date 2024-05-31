@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Users</title>
     <link th:href="@{/style.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -15,7 +16,12 @@
         <div class="container grid">
             <h3>All Users</h3>
             <div class="table-data">
-                <a th:href="@{/web/user/create}">Create User</a>
+                <div class="col s12 center-align">
+                    <a th:href="@{/user/create}">
+                        <button type="button" class="btn waves-effect waves-light">Create User</button>
+                    </a>
+                </div>
+
                 <table>
                     <thead>
                     <tr>
@@ -29,8 +35,8 @@
                         <td th:text="${user._id}"></td>
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.email}"></td>
-                        <td><a th:href="@{/web/user/edit/{id}(id=${user._id})}">Edit</a></td>
-                        <td><a th:href="@{/web/user/delete/{id}(id=${user._id})}">Delete</a></td>
+                        <td><a th:href="@{/user/edit/{id}(id=${user._id})}">Edit</a></td>
+                        <td><a th:href="@{/user/delete/{id}(id=${user._id})}">Delete</a></td>
                     </tr>
                     </tbody>
                 </table>

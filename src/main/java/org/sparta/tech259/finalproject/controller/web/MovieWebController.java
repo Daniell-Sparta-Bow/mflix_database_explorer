@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/web")
 public class MovieWebController {
 
     private final MovieService movieService;
@@ -59,7 +58,7 @@ public class MovieWebController {
     public String creatingMovie(@ModelAttribute("movie") Movie movie)
     {
         movieService.createMovie(movie);
-        return "redirect:/web/movies";
+        return "redirect:/movies";
     }
 
 
@@ -85,7 +84,7 @@ public class MovieWebController {
             @ModelAttribute("movie") Movie movie,
             @PathVariable String id) {
 //        movieService.updateMovie(id, movie);
-        return "redirect:/web/movies";
+        return "redirect:/movies";
     }
 
     // delete movie by id
@@ -93,7 +92,7 @@ public class MovieWebController {
     public String deleteMovieById(@PathVariable String id) {
         movieService.deleteMovie(id);
 
-        return "redirect:/web/movies";
+        return "redirect:/movies";
     }
 
 }

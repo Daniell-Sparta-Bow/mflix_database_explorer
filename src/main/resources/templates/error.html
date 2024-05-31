@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
+    <title>Error!</title>
     <link th:href="@{/style.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
 
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <main class="main">
-    <div th:insert="~{/fragments/header :: header}"></div>
-    <div>
-        <h1>Something went wrong!</h1>
-        <div>
-            <h3 th:text="'Error code: ' + ${statusCode}"></h3>
-            <h3 th:text="${message}"></h3>
-            <p th:text="${exception}"></p>
+    <section>
+        <div class="container grid">
+            <div class="error-data">
+                <h1>Something went wrong!</h1>
+                <div>
+                    <h3 th:text="'Error code: ' + ${statusCode}"></h3>
+                    <h3 th:text="${message}"></h3>
+                    <p th:text="${exception}"></p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 </main>
+
+<footer th:insert="~{/fragments/footer :: footer}"></footer>
+
 
 </body>
 </html>

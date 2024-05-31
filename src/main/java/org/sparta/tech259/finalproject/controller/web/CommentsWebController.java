@@ -20,49 +20,49 @@ public class CommentsWebController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/web/movie/comments")
+    @GetMapping("/movie/comments")
     public String getComments(Model model) {
         model.addAttribute("comments", commentService.getAllComments());
-        return "temp_comment";
+        return "movie-comment-temp";
     }
-    @GetMapping("/web/movie/comment/{id}")
+    @GetMapping("/movie/comment/{id}")
     public String getComment(@PathVariable String id, Model model) {
         model.addAttribute("comments", commentService.getCommentByCommentId(id));
-        return "temp_comment";
+        return "movie-comment-temp";
     }
 
-    @GetMapping("/web/movie/comment/edit/{id}")
+    @GetMapping("/movie/comment/edit/{id}")
     public String editComment(@PathVariable String id, Model model) {
         Comment commentToUpdate = commentService.getCommentByCommentId(id).orElse(null);
         model.addAttribute("comment", commentToUpdate);
-        return "update-comment";
+        return "movie-comment-update";
     }
 
-    @PostMapping("/web/movie/comment/update/{id}")
+    @PostMapping("/movie/comment/update/{id}")
     public String updateComment(@ModelAttribute("comment") Comment comment){
         comment.setDate(LocalDateTime.now());
         commentService.updateComment(comment.getId(),comment);
-        return "redirect:/web/movie/comments";
+        return "redirect:/movie/comments";
     }
-    @GetMapping("/web/movie/comment/add")
+    @GetMapping("/movie/comment/add")
     public String addComment(Model model) {
         Comment newComment = new Comment();
         model.addAttribute("comment", newComment);
-        return "add-comment";
+        return "movie-comment-add";
     }
-    @PostMapping("/web/movie/comment/save-comment")
+    @PostMapping("/movie/comment/save-comment")
     public String saveComment(@ModelAttribute("comment") Comment comment){
         comment.setDate(LocalDateTime.now());
         commentService.createComment(comment);
-        return "redirect:/web/movie/comments";
+        return "redirect:/movie/comments";
     }
-    @GetMapping("/web/movie/comment/delete/{id}")
+    @GetMapping("/movie/comment/delete/{id}")
     public String deleteComment(@PathVariable String id) {
         Comment commentToDelete = commentService.getCommentByCommentId(id).orElse(null);
         if (commentToDelete != null) {
             commentService.deleteComment(id);
         }
-        return "redirect:/web/movie/comments";
+        return "redirect:/movie/comments";
     }
 
 }

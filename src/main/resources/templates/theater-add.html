@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Theater</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
+<main class="main">
+    <section>
+        <div class="container grid">
+            <h3>Add Theater</h3>
+            <div class="form-data">
+                <form th:object="${theater}" th:action="@{/theater/add}" method="post">
+                    <label for="theaterId">ID</label>
+                    <input type="number" min="0" step="1" name="theaterId" id="theaterId" th:value="*{theaterId}" >
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" th:value="*{address}" >
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" th:value="*{city}" >
+                    <label for="state">State</label>
+                    <input type="text" name="state" id="state" th:value="*{state}" >
+                    <label for="zipcode">Zip Code</label>
+                    <input type="text" name="zipcode" id="zipcode" th:value="*{zipcode}" >
+                    <label for="latitude">Latitude</label>
+                    <input type="number" min="-90" max="90" step="0.1" name="latitude" id="latitude" th:value="*{latitude}" >
+                    <label for="longitude">Longitude</label>
+                    <input type="number" min="-180" max="180" step="0.1" name="longitude" id="longitude" th:value="*{longitude}" >
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="~{/fragments/footer :: footer}"></footer>
+
+
+</body>
+</html>

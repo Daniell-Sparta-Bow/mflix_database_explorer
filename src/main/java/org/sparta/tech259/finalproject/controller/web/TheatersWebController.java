@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Controller
-@RequestMapping("/web")
 public class TheatersWebController {
     private final TheaterService theaterService;
 
@@ -56,20 +55,20 @@ public class TheatersWebController {
     @GetMapping("/theater/add")
     public String getAddTheaterForm(Model model) {
         model.addAttribute("theater", TheaterDto.of());
-        return "add-theater";
+        return "theater-add";
     }
 
     @PostMapping("theater/add")
     public String addTheater(@ModelAttribute("theater") TheaterDto theaterDto) {
         Theater newTheater = theaterDto.toEntity();
         theaterService.createTheater(newTheater);
-        return "redirect:/web/theaters";
+        return "redirect:/theaters";
     }
 
     @GetMapping("/theater/delete/{id}")
     public String deleteTheaterByTheaterId(@PathVariable Integer id) {
         theaterService.deleteTheater(id);
-        return "redirect:/web/theaters";
+        return "redirect:/theaters";
     }
 
     @GetMapping("/theater/edit/{id}")
@@ -77,7 +76,7 @@ public class TheatersWebController {
         Theater theater = theaterService.findByTheaterId(id);
         TheaterDto theaterDto = TheaterDto.of(theater);
         model.addAttribute("theater", theaterDto);
-        return "edit-theater";
+        return "theater-edit";
     }
 
     @PostMapping("theater/edit/{id}")
@@ -85,6 +84,6 @@ public class TheatersWebController {
                               @ModelAttribute("theater") TheaterDto theaterDto) {
         Theater theater = theaterDto.toEntity();
         theaterService.updateTheater(id, theater);
-        return "redirect:/web/theaters";
+        return "redirect:/theaters";
     }
 }

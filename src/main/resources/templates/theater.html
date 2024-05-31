@@ -8,33 +8,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <main class="main">
-  <div th:insert="~{/fragments/header :: header}"></div>
-  <h3>Theater</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip Code</th>
-      <th>Coordinates</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr >
-      <td th:text="${theater.theaterId}"></td>
-      <td th:text="${theater.location.address.street1}"></td>
-      <td th:text="${theater.location.address.city}"></td>
-      <td th:text="${theater.location.address.state}"></td>
-      <td th:text="${theater.location.address.zipcode}"></td>
-      <td th:text="${theater.location.geo.coordinates}"></td>
-    </tr>
-    </tbody>
-  </table>
+  <section>
+    <div class="container grid">
+      <div class="table-data">
+        <h3>Theater</h3>
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Coordinates</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr >
+            <td th:text="${theater.theaterId}"></td>
+            <td th:text="${theater.location.address.street1}"></td>
+            <td th:text="${theater.location.address.city}"></td>
+            <td th:text="${theater.location.address.state}"></td>
+            <td th:text="${theater.location.address.zipcode}"></td>
+            <td th:text="${theater.location.geo.coordinates}"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!--<div th:insert="~{/fragments/footer :: footer}"></div>-->
+<footer th:insert="~{/fragments/footer :: footer}"></footer>
+
+
 </body>
 </html>

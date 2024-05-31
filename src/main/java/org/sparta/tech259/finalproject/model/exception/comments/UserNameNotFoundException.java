@@ -1,4 +1,4 @@
-package org.sparta.tech259.finalproject.model.exceptions;
+package org.sparta.tech259.finalproject.model.exception.comments;
 
 public class UserNameNotFoundException extends Exception{
     public UserNameNotFoundException(String userName) {

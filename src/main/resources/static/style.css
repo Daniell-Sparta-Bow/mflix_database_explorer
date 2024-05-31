@@ -57,6 +57,24 @@ button#add-comment-btn:hover {
     background-color: #0056b3;
 }
 
+.comment-buttons {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-bottom: 2px;
+}
+.input-field textarea {
+    width: 70%;
+    height: 80px; /* Adjust height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none; /* Allow vertical resizing */
+}
+
+
 .button-link {
     text-decoration: none;
 }
+

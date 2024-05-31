@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create movie</title>
+</head>
+<body>
+<form th:object="${movie}" th:action="@{/web/movie/create/save}" method="post"></form>
+    <label for="title">title</label>
+    <input type="text" name="title" id="title" th:value="*{title}" >
+    <label for="plot">Plot</label>
+    <input type="text" name="plot" id="plot" th:value="*{plot}" >
+    <label for="city">Runtime</label>
+    <input type="number" name="runtime" id="runtime" th:value="*{runtime}" >
+    <label for="state">Poster</label>
+    <input type="text" name="poster" id="poster" th:value="*{poster}" >
+    <label for="zipcode">title</label>
+    <input type="text" name="title" id="title" th:value="*{title}" >
+    <label for="latitude">Full plot</label>
+    <input type="text" min="-90" max="90" step="0.1" name="latitude" id="latitude" th:value="*{latitude}" >
+    <label for="longitude">Longitude</label>
+    <input type="number" min="-180" max="180" step="0.1" name="longitude" id="longitude" th:value="*{longitude}" >
+    <button type="submit">Add</button>
+</body>
+</html>

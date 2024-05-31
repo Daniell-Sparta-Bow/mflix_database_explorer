@@ -39,7 +39,7 @@ public class MovieWebController {
         if (movie.isEmpty()) {
             return "redirect:/error";
         } else {
-            model.addAttribute("movie", movie);
+            model.addAttribute("movie", movie.get());
             return "movie";
         }
     }

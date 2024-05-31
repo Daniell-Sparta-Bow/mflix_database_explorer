@@ -14,10 +14,14 @@
         <span class="comment-date" th:text="${comment.date}"></span>
     </div>
     <div class="comment-email" th:text="${comment.email}"></div>
+        <p></p>
+        <label for="text">Comment:</label>
         <div class="input-field">
-            <input type="text" th:field="${comment.text}" id="text"/>
+            <textarea th:field="${comment.text}" id="text"></textarea>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Update</button>
+        <div class="comment-buttons">
+             <button class="btn waves-effect waves-light" type="submit">Update</button>
+        </div>
     </form>
 </div>
 </body>

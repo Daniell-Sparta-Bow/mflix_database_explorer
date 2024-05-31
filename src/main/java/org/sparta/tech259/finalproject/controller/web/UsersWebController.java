@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/web")
 public class UsersWebController {
     private final UsersRepository usersRepository;
 
@@ -23,7 +24,7 @@ public class UsersWebController {
     }
 
     //get user
-    @GetMapping("/web/user/{id}")
+    @GetMapping("/user/{id}")
     public String getUser(@PathVariable String id, Model model) throws UsersNotFoundException {
         Optional<Users> usersOptional = usersRepository.findBy_id(id);
         if(usersOptional.isPresent()) {
@@ -37,7 +38,7 @@ public class UsersWebController {
     }
 
     //get all users
-    @GetMapping("/web/users")
+    @GetMapping("/users")
     public String getUsers(Model model) throws UsersNotFoundException {
         List<Users> usersList = usersRepository.findAll();
         if(usersList.isEmpty()) {
@@ -50,7 +51,7 @@ public class UsersWebController {
     }
 
     //create user
-    @GetMapping("/web/user/create")
+    @GetMapping("/user/create")
     public String createUser(Model model) {
         Users newUser = new Users(null,null,null);
         model.addAttribute("user", newUser);
@@ -58,15 +59,15 @@ public class UsersWebController {
     }
 
     //save created user
-    @PostMapping("/web/user/create/save")
+    @PostMapping("/user/create/save")
     public String creatingUser(@ModelAttribute("user") Users user) {
         usersRepository.save(user);
         return "redirect:/web/users";
     }
 
     //edit user info
-    @GetMapping("/web/user/edit/{id}")
-    public String editUser(@PathVariable String id, @ModelAttribute Users user, Model model) throws UsersNotFoundException {
+    @GetMapping("user/edit/{id}")
+    public String editUser(@PathVariable String id, Model model) throws UsersNotFoundException {
         Optional<Users> userToUpdate = usersRepository.findBy_id(id);
         if(userToUpdate.isPresent()) {
             Users userToEdit = userToUpdate.get();
@@ -74,12 +75,12 @@ public class UsersWebController {
             return "user-edit";
         }
         else {
-            throw new UsersNotFoundException(user.getName());
+            throw new UsersNotFoundException(id);
         }
     }
 
     //save edited user info
-    @PostMapping("/web/user/edit/save/{id}")
+    @PostMapping("/user/edit/save/{id}")
     public String updateUser(@ModelAttribute("user") Users newUser, @PathVariable String id) throws UsersNotUpdatedException {
         Optional<Users> optionalUser = usersRepository.findBy_id(id);
         if (optionalUser.isPresent()) {
@@ -96,7 +97,7 @@ public class UsersWebController {
 
 
     //delete
-    @GetMapping("/web/user/delete/{id}")
+    @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable String id) throws UsersNotFoundException {
         Optional<Users> optionalUser = usersRepository.findBy_id(id);
         if(optionalUser.isPresent()) {

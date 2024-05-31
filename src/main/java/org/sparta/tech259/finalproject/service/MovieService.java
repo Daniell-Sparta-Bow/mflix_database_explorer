@@ -17,8 +17,6 @@ public class MovieService {
     @Autowired
     private final MovieEntityRepository movieEntityRepository;
 
-
-
     public MovieService(MovieEntityRepository movieEntityRepository) {
         this.movieEntityRepository = movieEntityRepository;
     }
@@ -54,17 +52,14 @@ public class MovieService {
     public List<Movie> getMovieByCountry(String country){
         return movieEntityRepository.findByCountries(Collections.singletonList(country));
     }
-
-//    public List<Movie> getMoviesByRating(Double rating){
-//        return movieEntityRepository.findByRated(rating);
-//    }
+    
 
     public Movie createMovie(Movie movie){
         return movieEntityRepository.save(movie);
     }
 
-    public boolean deleteMovie(String title){
-        Optional<Movie> movieOptional= movieEntityRepository.findByTitle(title);
+    public boolean deleteMovie(String id){
+        Optional<Movie> movieOptional = movieEntityRepository.findBy_id(id);
         if (movieOptional.isPresent()){
         movieEntityRepository.delete(movieOptional.get());
         return true;
@@ -73,8 +68,8 @@ public class MovieService {
         }
     }
 
-    public Movie updateMovie(ObjectId id,  Movie updatedMovie){
-        Optional<Movie> optionalMovie = movieEntityRepository.findById(id);
+    public Movie updateMovie(String id,  Movie updatedMovie){
+        Optional<Movie> optionalMovie = movieEntityRepository.findBy_id(id);
         if(optionalMovie.isPresent()){
             Movie movie = optionalMovie.get();
 

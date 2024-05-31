@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text = "'Edit: ' + ${movie.title}"></title>
+</head>
+<body>
+
+<form th:object="${movie}" th:action="@{/web/movie/edit/save/{id}(id=${movie.id})}" method="post">
+    <label for="id">ID:
+        <input type="text" id="id" th:field="*{id}" />
+    </label><br>
+
+    <label for="plot">Plot:
+        <textarea id="plot" th:field="*{plot}"></textarea>
+    </label><br>
+
+    <label for="genres">Genres:
+        <input type="text" id="genres" th:field="*{genre}" />
+    </label><br>
+
+    <label for="runtime">Runtime:
+        <input type="number" id="runtime" th:field="*{runtime}" />
+    </label><br>
+
+    <label for="cast">Cast:
+        <input type="text" id="cast" th:field="*{cast}" />
+    </label><br>
+
+    <label for="poster">Poster:
+        <input type="text" id="poster" th:field="*{poster}" />
+    </label><br>
+
+    <label for="title">Title:
+        <input type="text" id="title" th:field="*{title}" />
+    </label><br>
+
+    <label for="fullplot">Full Plot:
+        <textarea id="fullplot" th:field="*{fullplot}"></textarea>
+    </label><br>
+
+    <label for="languages">Languages:
+        <input type="text" id="languages" th:field="*{languages}" />
+    </label><br>
+
+    <label for="released">Released:
+        <input type="datetime-local" id="released" th:field="*{released}" />
+    </label><br>
+
+    <label for="directors">Directors:
+        <input type="text" id="directors" th:field="*{directors}" />
+    </label><br>
+
+    <label for="rated">Rated:
+        <input type="text" id="rated" th:field="*{rated}" />
+    </label><br>
+
+    <label for="awards">Awards:
+        <input type="text" id="awards" th:field="*{awards}" />
+    </label><br>
+
+    <label for="lastUpdated">Last Updated:
+        <input type="text" id="lastUpdated" th:field="*{lastUpdated}" />
+    </label><br>
+
+    <label for="year">Year:
+        <input type="text" id="year" th:field="*{year}" />
+    </label><br>
+
+    <label for="imdb">IMDB:
+        <input type="text" id="imdb" th:field="*{imdb}" />
+    </label><br>
+
+    <label for="countries">Countries:
+        <input type="text" id="countries" th:field="*{countries}" />
+    </label><br>
+
+    <label for="type">Type:
+        <input type="text" id="type" th:field="*{type}" />
+    </label><br>
+
+    <label for="tomatoes">Tomatoes:
+        <input type="text" id="tomatoes" th:field="*{tomatoes}" />
+    </label><br>
+
+    <label for="num_mflix_comments">Number of Mflix Comments:
+        <input type="number" id="num_mflix_comments" th:field="*{num_mflix_comments}" />
+    </label><br>
+    <button type="submit">Save changes</button>
+</form>
+
+</body>
+</html>

@@ -67,7 +67,7 @@ public class UsersWebController {
 
     //edit user info
     @GetMapping("user/edit/{id}")
-    public String editUser(@PathVariable String id, @ModelAttribute Users user, Model model) throws UsersNotFoundException {
+    public String editUser(@PathVariable String id, Model model) throws UsersNotFoundException {
         Optional<Users> userToUpdate = usersRepository.findBy_id(id);
         if(userToUpdate.isPresent()) {
             Users userToEdit = userToUpdate.get();
@@ -75,7 +75,7 @@ public class UsersWebController {
             return "user-edit";
         }
         else {
-            throw new UsersNotFoundException(user.getName());
+            throw new UsersNotFoundException(id);
         }
     }
 

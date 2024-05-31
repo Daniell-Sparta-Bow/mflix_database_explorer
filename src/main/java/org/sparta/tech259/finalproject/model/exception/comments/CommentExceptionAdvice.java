@@ -1,9 +1,8 @@
-package org.sparta.tech259.finalproject.model.exceptions;
+package org.sparta.tech259.finalproject.model.exception.comments;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.http.ResponseEntity;
 import jakarta.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class CommentExceptionAdvice {

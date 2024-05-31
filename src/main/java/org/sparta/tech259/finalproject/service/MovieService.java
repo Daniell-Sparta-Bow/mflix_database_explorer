@@ -52,10 +52,7 @@ public class MovieService {
     public List<Movie> getMovieByCountry(String country){
         return movieEntityRepository.findByCountries(Collections.singletonList(country));
     }
-
-//    public List<Movie> getMoviesByRating(Double rating){
-//        return movieEntityRepository.findByRated(rating);
-//    }
+    
 
     public Movie createMovie(Movie movie){
         return movieEntityRepository.save(movie);

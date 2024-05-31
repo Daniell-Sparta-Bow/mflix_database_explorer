@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.sparta.tech259.finalproject.model.entities.Comment;
-import org.sparta.tech259.finalproject.model.exceptions.*;
+import org.sparta.tech259.finalproject.model.exception.comments.*;
 import org.sparta.tech259.finalproject.service.CommentService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
+
 @RestController
 @RequestMapping("/api")
 public class CommentsRestController {
@@ -20,7 +20,7 @@ public class CommentsRestController {
     }
 
     @GetMapping("/movie/comments")
-    public List<Comment> getAllComments() throws CommentsNotFoundException{
+    public List<Comment> getAllComments() throws CommentsNotFoundException {
         List<Comment> comments = commentService.getAllComments();
          if (comments.isEmpty()) {
              throw new CommentsNotFoundException();

@@ -35,11 +35,12 @@ public class MovieWebController {
     //get movie by id
     @GetMapping("/movie/{id}")
     public String getMovieById(@PathVariable String id, Model model) {
-        Optional movie = movieService.getMovieById(id);
+
+        Optional<Movie> movie = movieService.getMovieById(id);
         if (movie.isEmpty()) {
             return "redirect:/error";
         } else {
-            model.addAttribute("movie", movie);
+            model.addAttribute("movie", movie.get());
             return "movie";
         }
     }
@@ -62,12 +63,36 @@ public class MovieWebController {
     }
 
 
+    //edit movie info
+    @GetMapping("/movie/edit/{id}")
+    public String editMovie(@PathVariable String id, Model model)
+    {
+        Optional<Movie> movie = movieService.getMovieById(id);
+        if(movie.isPresent())
+        {
+            Movie movieToEdit = movie.get();
+            model.addAttribute("movie", movieToEdit);
+            return "movie-edit";
+        }
+        else{
+            throw new RuntimeException("Movie not found");
+        }
+    }
 
+    //save edited movie info
+    @PostMapping("/movie/edit/save/{id}")
+    public String updateMovie(
+            @ModelAttribute("movie") Movie movie,
+            @PathVariable String id) {
+//        movieService.updateMovie(id, movie);
+        return "redirect:/web/movies";
+    }
 
     // delete movie by id
-    @GetMapping("/movie/{id}")
-    public String deleteMovieById(@PathVariable String _id){
-        movieService.deleteMovie(_id);
+    @GetMapping("/movie/delete/{id}")
+    public String deleteMovieById(@PathVariable String id) {
+        movieService.deleteMovie(id);
+
         return "redirect:/web/movies";
     }
 

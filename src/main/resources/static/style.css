@@ -1,9 +1,203 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+:root {
+    --header-height: 3rem;
+
+    --hue-color: 276;
+
+    --first-color: hsl(var(--hue-color), 69%, 61%);
+    --first-color-second: hsl(var(--hue-color), 69%, 61%);
+    --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+    --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+    --title-color: hsl(var(--hue-color), 8%, 15%);
+    --text-color: hsl(var(--hue-color), 8%, 45%);
+    --text-color-light: hsl(var(--hue-color), 8%, 65%);
+    --input-color: hsl(var(--hue-color), 70%, 96%);
+    --body-color: hsl(var(--hue-color), 60%, 99%);
+    --container-color: #fff;
+    --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+    --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+
+    --body-font: "Poppins", sans-serif;
+    --big-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    --margin-bottom-0-25: 0.25rem;
+    --margin-bottom-0-5: 0.5rem;
+    --margin-bottom-0-75: 0.75rem;
+    --margin-bottom-0-1: 1rem;
+    --margin-bottom-0-1-5: 1.5rem;
+    --margin-bottom-0-2: 2rem;
+    --margin-bottom-0-2-5: 2.5rem;
+    --margin-bottom-0-3: 3rem;
+
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-model: 100;
+
+    @media screen and (min-width: 968px) {
+        :root {
+            --big-font-size: 3rem;
+            --h1-font-size: 2.25rem;
+            --h2-font-size: 1.5rem;
+            --h3-font-size: 1.25rem;
+            --normal-font-size: 1rem;
+            --small-font-size: 0.873rem;
+            --smaller-font-size: 0.813rem;
+        }
+    }
 }
+
+/* html basics */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0 0 var(--header-height) 0;
+    font-family: var(--body-font), sans-serif;
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: 0.3s ease-in;
+}
+
+h1,
+h2,
+h3,
+h4
+{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+label {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+.table-data{
+    align-content: center;
+}
+
+.table-data table{
+    overflow: hidden;
+    width: 60%;
+    margin: 0px auto;
+
+    border-collapse: collapse;
+}
+
+
+th, td {
+    border: 1px solid;
+    border-color: var(--first-color);
+    padding: 8px;
+    text-align: left;
+}
+
+th{
+    background-color: var(--body-color);
+}
+
+
+/* reusable css classes  */
+.section {
+    padding: 2rem 0 4rem;
+}
+
+.section-title {
+    font-size: var(--h1-font-size);
+}
+
+.section-subtitle {
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--margin-bottom-0-3);
+}
+
+.section-title,
+.section-subtitle {
+    text-align: center;
+}
+
+/* layout  */
+.container {
+    max-width: 768px;
+    margin-left: var(--margin-bottom-0-1-5);
+    margin-right: var(--margin-bottom-0-1-5);
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+
+
+/*med devices*/
+@media screen and (min-width: 768px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .section {
+        padding: 6rem 0 2rem;
+    }
+
+    .section-subtitle {
+        margin-bottom: 4rem;
+    }
+
+    .header {
+        top: 0;
+        bottom: initial;
+    }
+}
+
+
+
+/*large devices*/
+@media screen and (min-width: 1024px) {
+    .header,
+    .main,
+    .footer-container {
+        padding: 0;
+    }
+}
+
 
 .comment-container {
     max-width: 600px;
@@ -40,6 +234,7 @@ body {
     margin-top: 10px;
     line-height: 1.6;
 }
+
 button#add-comment-btn {
     display: block;
     margin: 20px auto;
@@ -72,7 +267,6 @@ button#add-comment-btn:hover {
     font-size: 14px;
     resize: none; /* Allow vertical resizing */
 }
-
 
 .button-link {
     text-decoration: none;

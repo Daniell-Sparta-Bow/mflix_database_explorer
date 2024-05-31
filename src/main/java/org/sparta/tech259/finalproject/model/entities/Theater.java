@@ -3,6 +3,8 @@ package org.sparta.tech259.finalproject.model.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document(collection = "theaters")
 public class Theater {
 
@@ -18,6 +20,15 @@ public class Theater {
     }
 
     public Theater(){
+    }
+
+    public static Theater fromRequestParams(Integer theaterId, String streetAddress, String city, String state, String zipcode, Double latitude, Double longitude) {
+        Address address = new Address(streetAddress, city, state, zipcode);
+        Geo geo = new Geo("Point", new double[] {longitude, latitude});
+        Theater theater = new Theater();
+        theater.setTheaterId(theaterId);
+        theater.setLocation(new Location(address, geo));
+        return theater;
     }
 
     public String getId() {
@@ -51,5 +62,18 @@ public class Theater {
                 ", theaterId=" + theaterId +
                 ", location=" + location +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Theater theater = (Theater) o;
+        return theaterId == theater.theaterId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(theaterId);
     }
 }

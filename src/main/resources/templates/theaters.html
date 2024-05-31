@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Theaters</title>
+  <!--    <link th:href="@{/style.css}" rel="stylesheet">-->
+</head>
+<body>
+<!--<div th:insert="~{/fragments/header :: header}"></div>-->
+
+
+<main class="main">
+  <div>
+    <form th:action="@{/web/theaters/search}" method="get">
+      <input type="text" name="query" placeholder="Search...">
+      <button type="submit">Search</button>
+    </form>
+    <a th:href="@{/web/theater/add}">Add theater</a>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip Code</th>
+      <th>Coordinates</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="theater : ${theaters}">
+      <td th:text="${theater.theaterId}"></td>
+      <td th:text="${theater.location.address.street1}"></td>
+      <td th:text="${theater.location.address.city}"></td>
+      <td th:text="${theater.location.address.state}"></td>
+      <td th:text="${theater.location.address.zipcode}"></td>
+      <td th:text="'(' + ${theater.location.geo.coordinates[0]} + ', ' + ${theater.location.geo.coordinates[1]} + ')'"></td>
+      <td><a th:href="@{/web/theater/edit/{id}(id=${theater.theaterId})}">Edit</a></td>
+      <td><a th:href="@{/web/theater/delete/{id}(id=${theater.theaterId})}">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+
+<!--<div th:insert="~{/fragments/footer :: footer}"></div>-->
+</body>
+</html>

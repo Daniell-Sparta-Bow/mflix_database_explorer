@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Theater</title>
+</head>
+<body >
+    <form th:object="${theater}" th:action="@{/web/theater/edit/{id}(id=${theater.theaterId})}" method="post">
+        <label for="theaterId">ID</label>
+        <input type="number" min="0" step="1" name="theaterId" id="theaterId" th:field="*{theaterId}">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" th:field="*{address}">
+        <label for="city">City</label>
+        <input type="text" name="city" id="city" th:field="*{city}">
+        <label for="state">State</label>
+        <input type="text" name="state" id="state" th:field="*{state}">
+        <label for="zipcode">Zip Code</label>
+        <input type="text" name="zipcode" id="zipcode" th:field="*{zipcode}" >
+        <label for="latitude">Latitude</label>
+        <input type="number" min="-90" max="90" step="0.1" name="latitude" id="latitude" th:field="*{latitude}">
+        <label for="longitude">Longitude</label>
+        <input type="number" min="-180" max="180" step="0.1" name="longitude" id="longitude" th:field="*{longitude}">
+        <button type="submit">Save changes</button>
+    </form>
+</body>
+</html>

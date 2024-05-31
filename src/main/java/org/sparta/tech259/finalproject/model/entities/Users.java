@@ -2,6 +2,8 @@ package org.sparta.tech259.finalproject.model.entities;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Objects;
+
 public class Users {
 
     @Id
@@ -53,4 +55,19 @@ public class Users {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(_id, users._id) && Objects.equals(name, users.name) && Objects.equals(email, users.email) && Objects.equals(password, users.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_id, name, email, password);
+    }
+
+
 }

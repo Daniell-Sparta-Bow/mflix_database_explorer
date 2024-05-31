@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Users</title>
+  <!--    <link th:href="@{/style.css}" rel="stylesheet">-->
+</head>
+<body>
+<!--<div th:insert="~{/fragments/header :: header}"></div>-->
+
+
+<main class="main">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip Code</th>
+      <th>Coordinates</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr >
+      <td th:text="${theater.theaterId}"></td>
+      <td th:text="${theater.location.address.street1}"></td>
+      <td th:text="${theater.location.address.city}"></td>
+      <td th:text="${theater.location.address.state}"></td>
+      <td th:text="${theater.location.address.zipcode}"></td>
+      <td th:text="${theater.location.geo.coordinates}"></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+
+<!--<div th:insert="~{/fragments/footer :: footer}"></div>-->
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Comment</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="comment-container">
+    <form th:action="@{/web/movie/comment/update/{id}(id=${id})}" th:object="${comment}" method="post">
+    <div class="comment-header">
+        <span class="comment-name" th:text="${comment.name}"></span>
+        <span class="comment-date" th:text="${comment.date}"></span>
+    </div>
+    <div class="comment-email" th:text="${comment.email}"></div>
+        <p></p>
+        <label for="text">Comment:</label>
+        <div class="input-field">
+            <textarea th:field="${comment.text}" id="text"></textarea>
+        </div>
+        <div class="comment-buttons">
+             <button class="btn waves-effect waves-light" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

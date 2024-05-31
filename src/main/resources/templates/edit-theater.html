@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Theater</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body >
+<main class="main">
+    <div th:insert="~{/fragments/header :: header}"></div>
     <form th:object="${theater}" th:action="@{/web/theater/edit/{id}(id=${theater.theaterId})}" method="post">
         <label for="theaterId">ID</label>
         <input type="number" min="0" step="1" name="theaterId" id="theaterId" th:field="*{theaterId}">
@@ -22,5 +27,7 @@
         <input type="number" min="-180" max="180" step="0.1" name="longitude" id="longitude" th:field="*{longitude}">
         <button type="submit">Save changes</button>
     </form>
+</main>
+
 </body>
 </html>

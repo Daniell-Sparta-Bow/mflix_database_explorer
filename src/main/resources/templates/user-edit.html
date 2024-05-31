@@ -2,12 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update User</title>
+    <title>Edit User</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
 
 
 <main class="main">
+    <div th:insert="~{/fragments/header :: header}"></div>
     <h3>Update User</h3>
     <form th:action="@{/web/user/edit/save/{id}(id=${user._id})}" th:object="${user}" method="post">
 

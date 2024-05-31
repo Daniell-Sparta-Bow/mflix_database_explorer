@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Comment</title>
     <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
 <div class="comment-container">
+    <div th:insert="~{/fragments/header :: header}"></div>
+    <h3>Update Comment</h3>
     <form th:action="@{/web/movie/comment/update/{id}(id=${id})}" th:object="${comment}" method="post">
     <div class="comment-header">
         <span class="comment-name" th:text="${comment.name}"></span>

@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Create User</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-
 <main class="main">
+    <div th:insert="~{/fragments/header :: header}"></div>
     <h3>Create User</h3>
     <form th:action="@{/web/user/create/save}" th:object="${user}" method="post">
 

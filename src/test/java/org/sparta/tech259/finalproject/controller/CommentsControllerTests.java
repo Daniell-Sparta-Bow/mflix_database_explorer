@@ -4,20 +4,16 @@ import org.junit.jupiter.api.*;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import org.sparta.tech259.finalproject.controller.rest.CommentsRestController;
 import org.sparta.tech259.finalproject.model.entities.Comment;
-import org.sparta.tech259.finalproject.model.exceptions.CommentsNotFoundException;
 import org.sparta.tech259.finalproject.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.ErrorResponse;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 

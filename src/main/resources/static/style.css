@@ -281,4 +281,13 @@ button#add-comment-btn:hover {
 .button-link {
     text-decoration: none;
 }
+.poster-container{
+    display: flex;
+    margin:0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    width: 25%;
+}
 

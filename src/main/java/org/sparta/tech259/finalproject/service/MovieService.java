@@ -4,6 +4,9 @@ import org.bson.types.ObjectId;
 import org.sparta.tech259.finalproject.model.entities.movies.Movie;
 import org.sparta.tech259.finalproject.model.repositories.MovieEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -22,7 +25,10 @@ public class MovieService {
     }
 
     public List<Movie> getAllMovies(){
-        return movieEntityRepository.findAll();
+//        return movieEntityRepository.findAll();
+        Pageable firstTen = PageRequest.of(0, 10);
+        Page<Movie> moviePage = movieEntityRepository.findAll(firstTen);
+        return moviePage.getContent();
     }
 
 

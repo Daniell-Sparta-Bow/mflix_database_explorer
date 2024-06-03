@@ -2,11 +2,11 @@
 :root {
     --header-height: 3rem;
 
-    --hue-color: 276;
+    --hue-color: 260;
 
-    --first-color: hsl(var(--hue-color), 69%, 61%);
-    --first-color-second: hsl(var(--hue-color), 69%, 61%);
-    --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+    --first-color: hsl(var(--hue-color), 54%, 45%);
+    --first-color-second: hsl(var(--hue-color), 60%, 50%);
+    --first-color-alt: hsl(var(--hue-color), 57%, 46%);
     --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
     --title-color: hsl(var(--hue-color), 8%, 15%);
     --text-color: hsl(var(--hue-color), 8%, 45%);
@@ -98,6 +98,7 @@ ul {
 }
 
 a {
+    color: var(--first-color);
     text-decoration: none;
 }
 
@@ -108,6 +109,10 @@ img {
 
 footer {
     margin-top: auto;
+}
+
+form {
+    margin-bottom: 1rem;
 }
 
 
@@ -245,29 +250,43 @@ th{
     line-height: 1.6;
 }
 
-button#add-comment-btn {
-    display: block;
-    margin: 20px auto;
+.purple-button {
+    color: var(--first-color);
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    border: 2px solid #5e35b1;
     padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
 }
 
-button#add-comment-btn:hover {
-    background-color: #0056b3;
+.purple-button:hover {
+    color: #ffffff;
 }
 
-.comment-buttons {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    margin-bottom: 2px;
+.purple-button::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: #5e35b1;
+    z-index: -1;
+    transition: all 1s;
 }
+
+.purple-button:hover::before {
+    width: 160%;
+}
+
+
 .input-field textarea {
     width: 70%;
     height: 80px; /* Adjust height as needed */

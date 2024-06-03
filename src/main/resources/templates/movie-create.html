@@ -38,17 +38,17 @@
                                type="text"
                                th:field="*{directors[__${dirStat.index}__]}">
                     </label>
-                    <button type="submit" name="addField" value="director">Add director</button><br>
+                    <button class="purple-button" type="submit" name="addField" value="director">Add director</button><br>
                     <label> Cast
                         <input th:each="cast,castStat : *{cast}"
                                type="text"
                                th:field="*{cast[__${castStat.index}__]}">
                     </label>
-                    <button type="submit" name="addField" value="cast">Add cast member</button><br>
+                    <button class="purple-button" type="submit" name="addField" value="cast">Add cast member</button><br>
                     <label>Award wins
                         <input type="number" th:field="*{awards.wins}">
                     </label>
-                    <button type="submit">Add</button>
+                    <button class="purple-button" type="submit">Add</button>
                 </form>
             </div>
         </div>

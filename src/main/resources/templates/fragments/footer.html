@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
     <link th:href="@{/style.css}" rel="stylesheet">
-    <!-- Include Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
+
 <footer th:fragment="footer" class="page-footer deep-purple darken-1">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Movie Database</h5>
-                <p class="grey-text text-lighten-4">Your source for comprehensive information on movies and theaters around the world.</p>
+                <h5 class="white-text">Mflix Explorer</h5>
+                <p class="grey-text text-lighten-4">Your go-to source for comprehensive information on movies and theaters around the world.</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="/web/movies">Movies</a></li>
-                    <li><a class="grey-text text-lighten-3" href="/web/theater">Theaters</a></li>
-                    <li><a class="grey-text text-lighten-3" href="/web/users">Users</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/movies">Movies</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/theaters">Theaters</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/users">Users</a></li>
                 </ul>
             </div>
         </div>
@@ -34,7 +34,7 @@
     </div>
 </footer>
 
-<!-- Include Materialize JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 </html>

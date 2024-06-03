@@ -2,37 +2,47 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit</title>
     <link th:href="@{/style.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
 
+<header th:insert="~{/fragments/header :: header}"></header>
 
 <main class="main">
-    <div th:insert="~{/fragments/header :: header}"></div>
-    <h3>Update User</h3>
-    <form th:action="@{/web/user/edit/save/{id}(id=${user._id})}" th:object="${user}" method="post">
+    <section class="title">
+        <div class="container grid">
+            <h3>Update User</h3>
+            <div class="form-data">
+                <form th:action="@{/user/edit/save/{id}(id=${user._id})}" th:object="${user}" method="post">
 
-        <label>Name
-            <input type="text" th:field="${user.name}"/>
-        </label><br>
+                    <label>Name
+                        <input type="text" th:field="${user.name}"/>
+                    </label><br>
 
-        <label>Email
-            <input type="text" th:field="${user.email}"/>
-        </label><br>
+                    <label>Email
+                        <input type="text" th:field="${user.email}"/>
+                    </label><br>
 
-        <label>Password
-            <input type="text" th:field="${user.password}"/>
-        </label><br>
+                    <label>Password
+                        <input type="text" th:field="${user.password}"/>
+                    </label><br>
 
-        <div class="row">
-            <div class="col s12 center-align">
-                <button type="submit" class="btn waves-effect waves-light">Update User</button>
+                    <div class="row">
+                        <div class="col s12 center-align">
+                            <button type="submit" class="btn waves-effect waves-light">Update User</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </section>
 </main>
+
+<footer th:insert="~{/fragments/footer :: footer}"></footer>
+
 
 </body>
 </html>

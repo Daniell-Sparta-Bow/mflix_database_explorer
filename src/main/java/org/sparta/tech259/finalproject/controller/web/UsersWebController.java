@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/web")
 public class UsersWebController {
     private final UsersRepository usersRepository;
 
@@ -62,7 +61,7 @@ public class UsersWebController {
     @PostMapping("/user/create/save")
     public String creatingUser(@ModelAttribute("user") Users user) {
         usersRepository.save(user);
-        return "redirect:/web/users";
+        return "redirect:/users";
     }
 
     //edit user info
@@ -89,7 +88,7 @@ public class UsersWebController {
             oldUser.setEmail(newUser.getEmail());
             oldUser.setPassword(newUser.getPassword());
             usersRepository.save(oldUser);
-            return "redirect:/web/users";
+            return "redirect:/users";
         } else {
             throw new UsersNotUpdatedException(newUser.getName());
         }
@@ -103,7 +102,7 @@ public class UsersWebController {
         if(optionalUser.isPresent()) {
             Users userToDelete = optionalUser.get();
             usersRepository.delete(userToDelete);
-            return "redirect:/web/users";
+            return "redirect:/users";
         } else {
             throw new UsersNotFoundException(id);
         }

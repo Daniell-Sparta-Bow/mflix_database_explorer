@@ -2,44 +2,62 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Movies</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <main class="main">
-    <a th:href="@{/web/movie/create}">Add movie</a>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>FullPlot</th>
-        <th>Genre</th>
-        <th>Runtime</th>
-        <th>Cast</th>
-        <th>Poster</th>
-        <th>Languages</th>
-        <th>Released</th>
-        <th>Directors</th>
-        <th>Imdb</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="movie : ${movies}">
-        <td th:text="${movie.title}"></td>
-        <td th:text="${movie.fullplot}"></td>
-        <td th:text="${movie.genre}"></td>
-        <td th:text="${movie.runtime}"></td>
-        <td th:text="${movie.cast}"></td>
-        <td th:text="${movie.poster}"></td>
-        <td th:text="${movie.languages}"></td>
-        <td th:text="${movie.released}"></td>
-        <td th:text="${movie.directors}"></td>
-        <td th:text="${movie.imdb}"></td>
-        <td><a th:href="@{/web/movie/edit/{id}(id=${movie.getId()})}">Edit</a></td>
-        <td><a th:href="@{/web/movie/delete/{id}(id=${movie.getId()})}">Delete</a></td>
-    </tr>
-    </tbody>
-</table>
+    <section>
+        <div class="container grid">
+            <div class="table-data">
+                <h3>All Movies</h3>
+                <a th:href="@{/movie/create}">
+                    <button type="button" class="btn waves-effect waves-light">Create Movie</button>
+                </a>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>FullPlot</th>
+                        <th>Genre</th>
+                        <th>Runtime</th>
+                        <th>Cast</th>
+                        <th>Languages</th>
+                        <th>Released</th>
+                        <th>Directors</th>
+                        <th>Imdb</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="movie : ${movies}">
+                        <td th:text="${movie.title}"></td>
+                        <td th:text="${movie.fullplot}"></td>
+                        <td th:text="${movie.genre}"></td>
+                        <td th:text="${movie.runtime}"></td>
+                        <td th:text="${movie.cast}"></td>
+                        <td th:text="${movie.languages}"></td>
+                        <td th:text="${movie.released}"></td>
+                        <td th:text="${movie.directors}"></td>
+                        <td th:text="${movie.imdb}"></td>
+                        <td><a th:href="@{/movie/edit/{id}(id=${movie.getId()})}">Edit</a></td>
+                        <td><a th:href="@{/movie/delete/{id}(id=${movie.getId()})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </main>
+
+<footer th:insert="~{/fragments/footer :: footer}"></footer>
+
+
 </body>
 </html>
+

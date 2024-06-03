@@ -2,28 +2,47 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create movie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Movie</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-<form th:object="${movie}" th:action="@{/web/movie/create/save}" method="post">
-    <label for="title">title</label>
-    <input type="text" name="title" id="title" th:value="*{title}">
-    <label for="plot">Plot</label>
-    <input type="text" name="plot" id="plot" th:value="*{plot}">
-    <label for="runtime">Runtime</label>
-    <input type="number" name="runtime" id="runtime" th:value="*{runtime}">
-    <label for="poster">Poster</label>
-    <input type="text" name="poster" id="poster" th:value="*{poster}">
-    <label for="year">title</label>
-    <input type="text" name="year" id="year" th:value="*{year}">
-    <label for="fullplot">Full plot</label>
-    <input type="text" name="fullplot" id="fullplot" th:value="*{fullplot}">
-    <label for="released">released</label>
-    <input type="datetime-local"  name="released" id="released" th:value="*{released}">
-    <label for="rated">Rated</label>
-    <input type="text"  name="rated" id="rated" th:value="*{rated}">
 
-    <button type="submit">Add</button>
-</form>
+<header th:insert="~{/fragments/header :: header}"></header>
+
+<main class="main">
+    <section>
+        <div class="container grid">
+            <h3>Create Movie</h3>
+            <div class="form-data">
+                <form th:object="${movie}" th:action="@{/movie/create/save}" method="post">
+                    <label for="title">title</label>
+                    <input type="text" name="title" id="title" th:value="*{title}">
+                    <label for="plot">Plot</label>
+                    <input type="text" name="plot" id="plot" th:value="*{plot}">
+                    <label for="runtime">Runtime</label>
+                    <input type="number" name="runtime" id="runtime" th:value="*{runtime}">
+                    <label for="poster">Poster</label>
+                    <input type="text" name="poster" id="poster" th:value="*{poster}">
+                    <label for="year">title</label>
+                    <input type="text" name="year" id="year" th:value="*{year}">
+                    <label for="fullplot">Full plot</label>
+                    <input type="text" name="fullplot" id="fullplot" th:value="*{fullplot}">
+                    <label for="released">released</label>
+                    <input type="datetime-local"  name="released" id="released" th:value="*{released}">
+                    <label for="rated">Rated</label>
+                    <input type="text"  name="rated" id="rated" th:value="*{rated}">
+
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="~{/fragments/footer :: footer}"></footer>
+
+
 </body>
 </html>

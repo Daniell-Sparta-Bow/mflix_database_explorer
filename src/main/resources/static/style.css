@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 :root {
     --header-height: 3rem;
 
@@ -17,7 +17,7 @@
     --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
     --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
 
-    --body-font: "Poppins", sans-serif;
+    --body-font: "Ubuntu", sans-serif;
     --big-font-size: 2rem;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
@@ -56,7 +56,6 @@
 }
 
 /* html basics */
-
 * {
     box-sizing: border-box;
     padding: 0;
@@ -68,6 +67,9 @@ html {
 }
 
 body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     margin: 0 0 var(--header-height) 0;
     font-family: var(--body-font), sans-serif;
     font-size: var(--normal-font-size);
@@ -103,28 +105,9 @@ img {
     max-width: 100%;
     height: auto;
 }
-.table-data{
-    align-content: center;
-}
 
-.table-data table{
-    overflow: hidden;
-    width: 60%;
-    margin: 0px auto;
-
-    border-collapse: collapse;
-}
-
-
-th, td {
-    border: 1px solid;
-    border-color: var(--first-color);
-    padding: 8px;
-    text-align: left;
-}
-
-th{
-    background-color: var(--body-color);
+footer {
+    margin-top: auto;
 }
 
 
@@ -133,7 +116,7 @@ th{
     padding: 2rem 0 4rem;
 }
 
-.section-title {
+.section title {
     font-size: var(--h1-font-size);
 }
 
@@ -159,8 +142,6 @@ th{
     display: grid;
     gap: 1.5rem;
 }
-
-
 
 /*med devices*/
 @media screen and (min-width: 768px) {
@@ -188,15 +169,44 @@ th{
 }
 
 
-
 /*large devices*/
 @media screen and (min-width: 1024px) {
     .header,
-    .main,
-    .footer-container {
+    .main {
         padding: 0;
     }
 }
+
+.end {
+    height: 2rem;
+}
+
+
+/* table styling */
+.table-data{
+    align-content: center;
+}
+
+.table-data table{
+    overflow: hidden;
+    width: 100%;
+    margin: 0px auto;
+
+    border-collapse: collapse;
+}
+
+
+th, td {
+    border: 1px solid;
+    border-color: var(--first-color);
+    padding: 8px;
+    text-align: left;
+}
+
+th{
+    background-color: var(--body-color);
+}
+
 
 
 .comment-container {

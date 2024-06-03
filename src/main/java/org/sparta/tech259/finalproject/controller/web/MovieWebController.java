@@ -1,6 +1,8 @@
 package org.sparta.tech259.finalproject.controller.web;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.sparta.tech259.finalproject.model.entities.movies.Movie;
+import org.sparta.tech259.finalproject.service.CommentService;
 import org.sparta.tech259.finalproject.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,12 @@ import java.util.Optional;
 public class MovieWebController {
 
     private final MovieService movieService;
+    private final CommentService commentService;
 
     @Autowired
-    public MovieWebController(MovieService movieService) {
+    public MovieWebController(MovieService movieService, CommentService commentService) {
         this.movieService = movieService;
+        this.commentService = commentService;
     }
 
     // get all movies
@@ -31,6 +35,7 @@ public class MovieWebController {
         }
     }
 
+
     //get movie by id
     @GetMapping("/movie/{id}")
     public String getMovieById(@PathVariable String id, Model model) {
@@ -40,6 +45,7 @@ public class MovieWebController {
             return "redirect:/error";
         } else {
             model.addAttribute("movie", movie.get());
+            model.addAttribute("comments", commentService.getCommentsByMovieId(movie.get().getId()));
             return "movie";
         }
     }
@@ -49,6 +55,20 @@ public class MovieWebController {
     public String createMovie(Model model)
     {
         Movie movie = new Movie();
+        movie.setDirectors(List.of(""));
+        movie.setCast(List.of(""));
+        model.addAttribute("movie", movie);
+        return "movie-create";
+    }
+
+    @PostMapping(value = "/movie/create/save", params = {"addField"})
+    public String addField(@ModelAttribute("movie") Movie movie, Model model, HttpServletRequest request) {
+        String field = request.getParameter("addField");
+        if ("director".equals(field)) {
+            movie.getDirectors().add("");
+        } else if ("cast".equals(field)) {
+            movie.getCast().add("");
+        }
         model.addAttribute("movie", movie);
         return "movie-create";
     }

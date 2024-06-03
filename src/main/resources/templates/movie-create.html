@@ -17,7 +17,7 @@
             <h3>Create Movie</h3>
             <div class="form-data">
                 <form th:object="${movie}" th:action="@{/movie/create/save}" method="post">
-                    <label for="title">title</label>
+                    <label for="title">Title</label>
                     <input type="text" name="title" id="title" th:value="*{title}">
                     <label for="plot">Plot</label>
                     <input type="text" name="plot" id="plot" th:value="*{plot}">
@@ -25,7 +25,7 @@
                     <input type="number" name="runtime" id="runtime" th:value="*{runtime}">
                     <label for="poster">Poster</label>
                     <input type="text" name="poster" id="poster" th:value="*{poster}">
-                    <label for="year">title</label>
+                    <label for="year">Year</label>
                     <input type="text" name="year" id="year" th:value="*{year}">
                     <label for="fullplot">Full plot</label>
                     <input type="text" name="fullplot" id="fullplot" th:value="*{fullplot}">
@@ -33,7 +33,21 @@
                     <input type="datetime-local"  name="released" id="released" th:value="*{released}">
                     <label for="rated">Rated</label>
                     <input type="text"  name="rated" id="rated" th:value="*{rated}">
-
+                    <label> Directors
+                        <input th:each="director,dirStat : *{directors}"
+                               type="text"
+                               th:field="*{directors[__${dirStat.index}__]}">
+                    </label>
+                    <button type="submit" name="addField" value="director">Add director</button><br>
+                    <label> Cast
+                        <input th:each="cast,castStat : *{cast}"
+                               type="text"
+                               th:field="*{cast[__${castStat.index}__]}">
+                    </label>
+                    <button type="submit" name="addField" value="cast">Add cast member</button><br>
+                    <label>Award wins
+                        <input type="number" th:field="*{awards.wins}">
+                    </label>
                     <button type="submit">Add</button>
                 </form>
             </div>

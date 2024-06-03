@@ -1,5 +1,6 @@
 package org.sparta.tech259.finalproject.controller.web;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.sparta.tech259.finalproject.model.entities.movies.Movie;
 import org.sparta.tech259.finalproject.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,20 @@ public class MovieWebController {
     public String createMovie(Model model)
     {
         Movie movie = new Movie();
+        movie.setDirectors(List.of(""));
+        movie.setCast(List.of(""));
+        model.addAttribute("movie", movie);
+        return "movie-create";
+    }
+
+    @PostMapping(value = "/movie/create/save", params = {"addField"})
+    public String addField(@ModelAttribute("movie") Movie movie, Model model, HttpServletRequest request) {
+        String field = request.getParameter("addField");
+        if ("director".equals(field)) {
+            movie.getDirectors().add("");
+        } else if ("cast".equals(field)) {
+            movie.getCast().add("");
+        }
         model.addAttribute("movie", movie);
         return "movie-create";
     }

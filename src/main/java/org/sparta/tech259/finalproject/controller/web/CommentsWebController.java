@@ -27,7 +27,7 @@ public class CommentsWebController {
     }
     @GetMapping("/movie/comment/{id}")
     public String getComment(@PathVariable String id, Model model) {
-        model.addAttribute("comments", commentService.getCommentByCommentId(id));
+        model.addAttribute("comments", commentService.getCommentsByMovieId(id));
         return "movie-comment-temp";
     }
 

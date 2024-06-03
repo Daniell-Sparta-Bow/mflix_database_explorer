@@ -14,38 +14,38 @@
 <main class="main">
     <section>
         <div class="container grid">
-            <div class="table-data">
-                <h3>Movie</h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>FullPlot</th>
-                        <th>Genre</th>
-                        <th>Runtime</th>
-                        <th>Cast</th>
-                        <th>Poster</th>
-                        <th>Languages</th>
-                        <th>Released</th>
-                        <th>Directors</th>
-                        <th>Imdb</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr >
-                        <td th:text="${movie.title}"></td>
-                        <td th:text="${movie.fullplot}"></td>
-                        <td th:text="${movie.runtime}"></td>
-                        <td th:text="${movie.cast}"></td>
-                        <td th:text="${movie.poster}"></td>
-                        <td th:text="${movie.languages}"></td>
-                        <td th:text="${movie.released}"></td>
-                        <td th:text="${movie.getDirectors}"></td>
-                        <td th:text="${movie.getImdb}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="card-content">
+                <h3 class="center-align" th:text="${movie.title}"></h3>
+                <div class="poster-container">
+                    <img class="center-align" alt="poster" th:src="${movie.getPoster()}" />
+                </div>
+                <p class="center-align" th:text="'Imdb Rating: ' +${movie.getImdb()}"></p>
+                <p class="center-align" th:text="${movie.genre}"></p>
+                <p class="center-align" th:text="'Duration: ' +${movie.runtime}"></p>
+                <p class="center-align" th:text="${movie.getReleased()}"></p>
+                <h5 class="center-align">Plot</h5>
+                <p class="center-align" th:text="${movie.getPlot()}"></p>
+                <h5 class="center-align">People:</h5>
+                <p class="center-align" th:text="'Director: ' + ${movie.getDirectors()}"></p>
+                <p class="center-align" th:text="'Cast: ' + ${movie.getCast()}"></p>
+                <h5 class="center-align">Statistics:</h5>
+                <h6 class="center-align">Awards:</h6>
+                <p class="center-align" th:text="${movie.getAwards()}"></p>
+                <h6 class="center-align">Languages:</h6>
+                <p class="center-align" th:text="${movie.getLanguages()}"></p>
+            </div>
+            <h2 class="center-align">Comments:</h2>
+            <div class="comment-container" th:each="comment : ${comments}">
+                <div class="comment-header">
+                    <span class="comment-name" th:text="${comment.name}"></span>
+                    <span class="comment-date" th:text="${comment.date}"></span>
+                </div>
+                <div class="comment-email" th:text="${comment.email}"></div>
+                <div class="comment-text" th:text="${comment.text}"></div>
+                <div class="comment-buttons">
+                    <a class="button-link" th:href="@{/movie/comment/edit/{id}(id=${comment.id})}"><button class="btn waves-effect waves-light" type="submit">Edit</button></a>
+                    <a class="button-link" th:href="@{/movie/comment/delete/{id}(id=${comment.id})}"><button class="btn waves-effect waves-light" type="submit">Delete</button></a>
+                </div>
             </div>
         </div>
     </section>

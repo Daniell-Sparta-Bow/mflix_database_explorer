@@ -20,17 +20,6 @@ public class CommentsWebController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/movie/comments")
-    public String getComments(Model model) {
-        model.addAttribute("comments", commentService.getAllComments());
-        return "movie-comment-temp";
-    }
-    @GetMapping("/movie/comment/{id}")
-    public String getComment(@PathVariable String id, Model model) {
-        model.addAttribute("comments", commentService.getCommentByCommentId(id));
-        return "movie-comment-temp";
-    }
-
     @GetMapping("/movie/comment/edit/{id}")
     public String editComment(@PathVariable String id, Model model) {
         Comment commentToUpdate = commentService.getCommentByCommentId(id).orElse(null);

@@ -15,6 +15,7 @@
     <section>
         <div class="container grid">
             <div class="comment-container">
+
                 <h3>Add Comment</h3>
                 <form th:action="@{/movie/comment/save-comment}" th:object="${comment}" method="post">
                     <div class="input-field">
@@ -33,7 +34,7 @@
                         <textarea th:field="${comment.text}" id="text"></textarea>
                     </div>
                     <div class="comment-buttons">
-                        <button class="btn waves-effect waves-light" type="submit">Post</button>
+                        <button class="purple-button" type="submit">Post</button>
                     </div>
                 </form>
             </div>

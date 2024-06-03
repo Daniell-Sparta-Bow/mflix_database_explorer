@@ -15,7 +15,7 @@
     <section>
         <div class="container grid">
             <div class="comment-container">
-                <h3>Update Comment</h3>
+                <button class="purple-button">Update Comment</button>
                 <form th:action="@{/movie/comment/update/{id}(id=${id})}" th:object="${comment}" method="post">
                     <div class="comment-header">
                         <span class="comment-name" th:text="${comment.name}"></span>
